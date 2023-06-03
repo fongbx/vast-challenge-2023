@@ -1,9 +1,20 @@
 ---
-title: "About"
+title: "About Us"
 ---
 
-About this site
+_________
 
-```{r}
-1 + 1
-```
+<center>
+
+**The Authors:**
+
+**Fang Ziwei** \| **Fong Bao Xian** \| **Sherinah Binte Rashid**
+<br> Master of IT in Business Students, Singapore Management University
+
+**Our Mentor:**
+
+[**Prof KAM Tin Seong**](https://faculty.smu.edu.sg/profile/kam-tin-seong-486)
+<br>Full-time Faculty, Singapore Management University
+<br>Associate Professor of Information Systems (Practice)
+
+</center>

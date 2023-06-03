@@ -2,15 +2,15 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About Us",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "The Authors:\nFang Ziwei | Fong Bao Xian | Sherinah Binte Rashid  Master of IT in Business Students, Singapore Management University\nOur Mentor:\nProf KAM Tin Seong Full-time Faculty, Singapore Management University Associate Professor of Information Systems (Practice)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "vast-challenge-2023",
+    "title": "",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "This Visual Analytics Project is based on Vast Challenge 2023."
   }
 ]

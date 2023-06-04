@@ -8,8 +8,10 @@ website:
     background: "#8cbfeb"
     pinned: true
     right:
-      - href: index.qmd
+      - icon: house-fill
+        href: index.qmd
         text: Home
+      - proposal.qmd      
       - about.qmd
 
 format:

@@ -4,13 +4,55 @@
     "href": "about.html",
     "title": "About Us",
     "section": "",
-    "text": "The Authors:\nFang Ziwei | Fong Bao Xian | Sherinah Binte Rashid  Master of IT in Business Students, Singapore Management University\nOur Mentor:\nProf KAM Tin Seong Full-time Faculty, Singapore Management University Associate Professor of Information Systems (Practice)"
+    "text": "The Authors:\nFang Ziwei | Fong Bao Xian | Sherinah Binte Rashid Master of IT in Business students, Singapore Management University\nOur Mentor:\nProf KAM Tin Seong Full-time Faculty, Singapore Management University Associate Professor of Information Systems (Practice)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "",
+    "title": "Oceanus Watch",
     "section": "",
     "text": "This Visual Analytics Project is based on Vast Challenge 2023."
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Proposal",
+    "section": "",
+    "text": "Illegal, unreported, and unregulated (IUU) fishing poses a significant threat to marine ecosystems worldwide. The World Wildlife Fund (WWF) estimates that IUU fishing equates to approximately 11-19% of reported global fisheries production and leads to losses of roughly $10-23.5 billion in value. Besides leading to the depletion of fish stocks, ecological imbalances, and negative impact on the livelihoods of small-scale coastal fishing communities that depend on fisheries for food, IUU fishing has also been associated with other crimes such as transnational syndicates and human trafficking (WWF, n.d.).\nIn general, IUU fishing refers to all fishing that breaks fisheries laws, or occurs outside the reach of fisheries laws and regulations (Bondaroff et al., 2015). It is important to distinguish the specific elements of IUU fishing so as to enable targeted recommendations to combat IUU fishing:\n\nIllegal: Fishing conducted by foreign vessels without permission of a jurisdiction\nUnreported: Fishing which have been misreported/not reported to national relevant authority\nUnregulated: Fishing conducted by vessels without nationality\n\nUnderstanding the modus operandi of IUU fishing will enable the relevant authorities to identify individuals and entities that fit a pattern of illegal fishing. The following indicators are some red flags which can be used to identify entities that are involved in IUU fishing (Widjaja et al., 2020):\n\nTransshipment: Moving the catch from one vessel to another at sea or at port. The tuna fish comprises a large portion of this, as it can be frozen and is highly-valued.\nData manipulation: The species or amounts caught, and the catch locations may be misreported or manipulated.\nVessel identify fraud: A vessel may use more than one identity, appearing under different names in different jurisdictions, or may use the identify of another genuine vessel, which results in 2 or more vessels having the same identify concurrently.\n\nAwareness of different facets of illegal fishing is imperative to combating IUU fishing, so as to protect marine ecosystems, ensure sustainable fisheries, and uphold human rights. The worrying statistics and indicators of IUU fishing underscore the urgency for targeted interventions."
+  },
+  {
+    "objectID": "proposal.html#section",
+    "href": "proposal.html#section",
+    "title": "Proposal",
+    "section": "4.1 —-",
+    "text": "4.1 —-\n\nProblem Statement\nAssuming the volunteers are representative of the city’s population, characterize the distinct areas of the city that you identify. For each area you identify, provide your rationale and supporting data.\n\n\nApproach"
+  },
+  {
+    "objectID": "proposal.html#identification-of-temporal-patterns",
+    "href": "proposal.html#identification-of-temporal-patterns",
+    "title": "Proposal",
+    "section": "5.1 Identification of temporal patterns",
+    "text": "5.1 Identification of temporal patterns\nProblem Statement: Use visual analytics to identify temporal patterns for individual entities and between entities in the knowledge graph FishEye created from trade records. Categorise the types of business relationship patterns you find.\nApproach\nFirst, we will visualise the temporal patterns of influential companies in the network.\n\nThree sets of influential companies will be identified:\n\nImporters – Top 10 companies with the highest in-degree centrality\nExporters – Top 10 companies with the highest out-degree centrality\nIntermediaries – Top 10 companies with the highest betweenness centrality\n\nVisualisations will be made available on the RShiny app (see prototype 1). Users can select any one of the identified companies and the following visualisations will be generated for exploring and identifying temporal patterns:\n\nNetwork graph of the company and its linked nodes over the years (panel A)\nBar chart of the total frequency, weight and value of shipment of the company over the years (panel B)\nLine chart of the company’s trade with its partner companies over the years. Multiple partner companies may be selected at the same time for comparison (panel C)\n\n\n\n\n\n\n\n\n\n\nFig 1: Prototype 1\n\n\nNext, we will also explore temporal patterns of trade routes.\n\nThe shipping and receiving country of each shipment edge will be mapped based on the id of the source and target.\nVisualisations will be made available on the RShiny app (see prototype 2). Users can select the year of interest and heatmaps will be generated to explore which shipping routes are most frequent in the year (panel A). A data table listing the top companies on that shipping route will also be shown (panel B).\n\n\n\n\nFig 2: Prototype 2"
+  },
+  {
+    "objectID": "proposal.html#evaluation-of-predicted-graph-edges",
+    "href": "proposal.html#evaluation-of-predicted-graph-edges",
+    "title": "Proposal",
+    "section": "5.2 Evaluation of predicted graph edges",
+    "text": "5.2 Evaluation of predicted graph edges\nProblem Statement: Evaluate the sets of predicted knowledge graph links FishEye has provided using visual analytics. Which sets are most reliable for completing the graph?\nApproach\nThe bundles will be evaluated based on the following:\n\nFiltering out edges where hscodes are not related to live fishes. The remaining edges will have to be above a certain threshold.\nChecking for whether the nodes and edges in the bundle forms a complete graph. The graph in the bundle should not have many disconnected components.\nChecking for common nodes between the bundles and the main graph. If there are few common nodes, the added value of the bundle is limited."
+  },
+  {
+    "objectID": "proposal.html#utilisation-of-predicted-graph-edges",
+    "href": "proposal.html#utilisation-of-predicted-graph-edges",
+    "title": "Proposal",
+    "section": "5.3 Utilisation of predicted graph edges",
+    "text": "5.3 Utilisation of predicted graph edges\nProblem Statement: Illustrate how your visual analytics approach can be used to identify new patterns and/or anomalies that are present in the knowledge graph after you have added the links you deemed reliable in the previous question.\nApproach\nThe selected bundles from 5.2 will be added to the main graph to carry out the tasks in 5.1 again. Comparison will be made before and after the addition of the bundles, on the influential companies identified and their temporal patterns."
+  },
+  {
+    "objectID": "proposal.html#identification-of-companies-involved-in-illegal-fishing",
+    "href": "proposal.html#identification-of-companies-involved-in-illegal-fishing",
+    "title": "Proposal",
+    "section": "5.3 Identification of companies involved in illegal fishing",
+    "text": "5.3 Identification of companies involved in illegal fishing\nProblem Statement: Identify companies that fit a pattern of illegal fishing. Use visualisations to support your conclusions and your confidence in them.\nApproach\nWe will identify companies that fit the pattern of illegal fishing using the following red flags:\n\nSudden changes in shipment frequency\nAbnormal ratio between declared goods value and goods weight\n\nWith the companies that fit the pattern of illegal fishing identified, similar visualisations to the influential companies in 5.1 (see prototype 1) will be made available on the RShiny app. Users can select any one of the identified suspicious companies and the following visualisations will be generated to enable further exploration:\n\nNetwork graph of the company and its linked nodes over the years (panel A in prototype 1)\nBar chart of the total frequency, weight and value of shipment of the company over the years (panel B in prototype 1)\nLine chart of the company’s trade with its partner companies over the years. Multiple partner companies may be selected at the same time for comparison (panel C in prototype 1)\n\nIn addition, a calendar heatmap (see prototype 3) will be developed to illustrate the frequency of illegal activities conducted by fishing companies daily for each year. This visualisation will help to identify patterns and determine if there are specific periods or seasons during which these illegal companies are more prone to engaging in illegal fishing. The implementation of a calendar heatmap will effectively display this pattern. When a user clicks on a specific grid, a datatable will showcase the fishing activity details of the companies for that day.\n\n\n\nFig 3: Prototype 3"
   }
 ]

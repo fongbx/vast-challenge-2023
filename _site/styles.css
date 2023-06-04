@@ -35,7 +35,7 @@ d-byline {
 /*-- ARTICLE APPENDIX --*/
 d-appendix {
   --heading-size:    15px;
-  --heading-color:   rgba(0, 0, 0, 0.65);      
+  --heading-color:   #2874A6;      
   --text-size:       0.9rem;                    
   --text-color:      #1a162d;                   
 }
@@ -45,14 +45,16 @@ d-appendix {
 
 .distill-site-header {
   --title-size:       15px;
-  --text-color:       #1f1f1f;                   
+  --text-color:       #1f1f1f;
+  --title-color:      #2874A6;
   --text-size:        15px;
   --hover-color:      white;                   
   --bkgd-color:       #85C1E9;                      
 }
 
 .distill-site-footer {
-  --text-color:       #1f1f1f;                   
+  --text-color:       #1f1f1f;
+  --title-color:      #2874A6;
   --text-size:        15px;
   --hover-color:      white;
   --bkgd-color:       #85C1E9;                 

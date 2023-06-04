@@ -1,8 +1,11 @@
 ---
 title: "Proposal"
+format:
+  html:
+    number-sections: true
 ---
 
-# 1. Introduction
+# Introduction
 
 Illegal, unreported, and unregulated (IUU) fishing poses a significant threat to marine ecosystems worldwide. The World Wildlife Fund (WWF) estimates that IUU fishing equates to approximately 11-19% of reported global fisheries production and leads to losses of roughly \$10-23.5 billion in value. Besides leading to the depletion of fish stocks, ecological imbalances, and negative impact on the livelihoods of small-scale coastal fishing communities that depend on fisheries for food, IUU fishing has also been associated with other crimes such as transnational syndicates and human trafficking (WWF, n.d.).
 
@@ -20,7 +23,7 @@ Understanding the modus operandi of IUU fishing will enable the relevant authori
 
 Awareness of different facets of illegal fishing is imperative to combating IUU fishing, so as to protect marine ecosystems, ensure sustainable fisheries, and uphold human rights. The worrying statistics and indicators of IUU fishing underscore the urgency for targeted interventions.
 
-# 2. Objectives
+# Objectives
 
 Recognising the urgent need to address this issue, the country of Oceanus has partnered with FishEye International in the VAST Challenge 2023, which focuses on IUU fishing. By harnessing the capabilities of visual analytics, our team aims to address Mini-Challenge 2 to uncover hidden relationships and detect potential IUU fishing activities.
 
@@ -31,7 +34,7 @@ The team will work with the main dataset, and additional bundled edge data provi
 
 Through this data exploration and advanced visualisations, the team aspires to provide actionable insights that will aid in the identification of illegal fishing practices.
 
-# 3. The Dataset
+# The Dataset
 
 The following datasets from the VAST Challenge 2023 - Mini-Challenge 2 will be used:
 
@@ -39,7 +42,7 @@ The following datasets from the VAST Challenge 2023 - Mini-Challenge 2 will be u
 
 **12 bundle files**: *carp.json, catfish.json, chub_mackerel.json, cod2.json, herring.json, lichen.json, mackerel.json, pollock.json, salmon.json, salmon_wgl.json, shark.json, tuna.json* containing additional AI-predicted edges that can be added to the main graph.
 
-# 4. Methodology
+# Methodology
 
 The steps required in this project are as follows:
 
@@ -49,9 +52,9 @@ The steps required in this project are as follows:
 
 **Interactive Dashboarding:** Selected visualisations will be deployed as an interactive dashboard in an RShiny app. The RShiny app aims to enable FishEye International's investigators to explore the prepared and filtered dataset for discovery of patterns and anomalies.
 
-# 5. Approach
+# Approach
 
-## 5.1 Identification of temporal patterns
+## Identification of temporal patterns
 
 **Problem Statement:** Use visual analytics to identify temporal patterns for individual entities and between entities in the knowledge graph FishEye created from trade records. Categorise the types of business relationship patterns you find.
 
@@ -79,7 +82,7 @@ Next, we will also explore temporal patterns of trade routes.
 
 ![*Fig 2: Prototype 2*](images/prototype3.png){fig-align="center"}
 
-## 5.2 Evaluation of predicted graph edges
+## Evaluation of predicted graph edges
 
 **Problem Statement:** Evaluate the sets of predicted knowledge graph links FishEye has provided using visual analytics. Which sets are most reliable for completing the graph?
 
@@ -91,7 +94,7 @@ The bundles will be evaluated based on the following:
 -   Checking for whether the nodes and edges in the bundle forms a complete graph. The graph in the bundle should not have many disconnected components.
 -   Checking for common nodes between the bundles and the main graph. If there are few common nodes, the added value of the bundle is limited.
 
-## 5.3 Utilisation of predicted graph edges
+## Utilisation of predicted graph edges
 
 **Problem Statement:** Illustrate how your visual analytics approach can be used to identify new patterns and/or anomalies that are present in the knowledge graph after you have added the links you deemed reliable in the previous question.
 
@@ -99,7 +102,7 @@ The bundles will be evaluated based on the following:
 
 The selected bundles from 5.2 will be added to the main graph to carry out the tasks in 5.1 again. Comparison will be made before and after the addition of the bundles, on the influential companies identified and their temporal patterns.
 
-## 5.3 Identification of companies involved in illegal fishing
+## Identification of companies involved in illegal fishing
 
 **Problem Statement:** Identify companies that fit a pattern of illegal fishing. Use visualisations to support your conclusions and your confidence in them.
 
@@ -120,11 +123,11 @@ In addition, a calendar heatmap (see prototype 3) will be developed to illustrat
 
 ![*Fig 3: Prototype 3*](images/prototype4.png){fig-align="center" width="638"}
 
-# 6. Timeline
+# Timeline
 
 ![Fig 4: Gantt Chart](images/gantt.png){width="711"}
 
-# 7. Tools and Packages
+# Tools and Packages
 
 R is the main tool used for data preparation and visualisation, together with the following R packages:
 
@@ -142,7 +145,7 @@ R is the main tool used for data preparation and visualisation, together with th
 | igraph                               | For creating and manipulating graphs and analysing networks                        |
 | DT                                   | For creating interactive data tables                                               |
 
-# 8. References
+# References
 
 Bondaroff, T. N. P., Werf, W. v. d., & Reitano, T. (2015). The illegal fishing and Organized crime nexus: Illegal fishing as transnational organised crime. Retrieved from: https://www.unodc.org/documents/congress/background-information/NGO/GIATOC-Blackfish/Fishing_Crime.pdf
 

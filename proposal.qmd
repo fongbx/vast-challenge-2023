@@ -131,19 +131,18 @@ In addition, a calendar heatmap (see prototype 3) will be developed to illustrat
 
 R is the main tool used for data preparation and visualisation, together with the following R packages:
 
-| Packages                             | Purpose                                                                            |
+| Packages                             | Purpose                                                                                       |
 |--------------------------|----------------------------------------------|
-| shiny, shinydashboard & shinywidgets | For building interactive web application and visualisations                        |
-| shinythemes                          | For a wide variety of shiny themes                                                 |
-| tidyverse                            | For data wrangling and visualisation                                               |
-| jsonlite                             | For parsing json files from/to R objects                                           |
-| lubridate                            | For working with date-times and time-spans                                         |
-| tidygraph                            | For graph and network manipulation                                                 |
-| ggraph                               | An extension of ggplot2 for supporting relational data structures such as networks |
-| and graphs                           |                                                                                    |
-| visNetwork                           | For interactive network visualisation                                              |
-| igraph                               | For creating and manipulating graphs and analysing networks                        |
-| DT                                   | For creating interactive data tables                                               |
+| shiny, shinydashboard & shinywidgets | For building interactive web application and visualisations                                   |
+| shinythemes                          | For a wide variety of shiny themes                                                            |
+| tidyverse                            | For data wrangling and visualisation                                                          |
+| jsonlite                             | For parsing json files from/to R objects                                                      |
+| lubridate                            | For working with date-times and time-spans                                                    |
+| tidygraph                            | For graph and network manipulation                                                            |
+| ggraph                               | An extension of ggplot2 for supporting relational data structures such as networks and graphs |
+| visNetwork                           | For interactive network visualisation                                                         |
+| igraph                               | For creating and manipulating graphs and analysing networks                                   |
+| DT                                   | For creating interactive data tables                                                          |
 
 # References
 

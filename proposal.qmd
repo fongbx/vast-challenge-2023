@@ -3,6 +3,7 @@ title: "Proposal"
 format:
   html:
     number-sections: true
+date: '4 June 2023'
 ---
 
 # Introduction
@@ -132,7 +133,7 @@ In addition, a calendar heatmap (see prototype 3) will be developed to illustrat
 R is the main tool used for data preparation and visualisation, together with the following R packages:
 
 | Packages                             | Purpose                                                                                       |
-|--------------------------|----------------------------------------------|
+|--------------------------------------|-----------------------------------------------------------------------------------------------|
 | shiny, shinydashboard & shinywidgets | For building interactive web application and visualisations                                   |
 | shinythemes                          | For a wide variety of shiny themes                                                            |
 | tidyverse                            | For data wrangling and visualisation                                                          |

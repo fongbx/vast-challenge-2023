@@ -54,5 +54,103 @@
     "title": "Proposal",
     "section": "5.4 Identification of companies involved in illegal fishing",
     "text": "5.4 Identification of companies involved in illegal fishing\nProblem Statement: Identify companies that fit a pattern of illegal fishing. Use visualisations to support your conclusions and your confidence in them.\nApproach:\nWe will identify companies that fit the pattern of illegal fishing using the following red flags:\n\nSudden changes in shipment frequency\nAbnormal ratio between declared goods value and goods weight\n\nWith the companies that fit the pattern of illegal fishing identified, similar visualisations to the influential companies in 5.1 (see prototype 1) will be made available on the RShiny app. Users can select any one of the identified suspicious companies and the following visualisations will be generated to enable further exploration:\n\nNetwork graph of the company and its linked nodes over the years (panel A in prototype 1)\nBar chart of the total frequency, weight and value of shipment of the company over the years (panel B in prototype 1)\nLine chart of the company’s trade with its partner companies over the years. Multiple partner companies may be selected at the same time for comparison (panel C in prototype 1)\n\nIn addition, a calendar heatmap (see prototype 3) will be developed to illustrate the frequency of illegal activities conducted by fishing companies daily for each year. This visualisation will help to identify patterns and determine if there are specific periods or seasons during which these illegal companies are more prone to engaging in illegal fishing. The implementation of a calendar heatmap will effectively display this pattern. When a user clicks on a specific grid, a datatable will showcase the fishing activity details of the companies for that day.\n\n\n\nFig 3: Prototype 3"
+  },
+  {
+    "objectID": "data_preparation.html",
+    "href": "data_preparation.html",
+    "title": "Data Preparation",
+    "section": "",
+    "text": "pacman::p_load(tidyverse, lubridate, jsonlite, tidygraph, ggraph, visNetwork, igraph, plotly, RColorBrewer, DT)\n\n\n\n\nWe will use fromJSON() of jsonlite package to import mc2_challenge_graph.json into the R environment.\n\nmc2 <- fromJSON(\"data/mc2_challenge_graph.json\")"
+  },
+  {
+    "objectID": "data_preparation.html#step-1-extract-the-nodes",
+    "href": "data_preparation.html#step-1-extract-the-nodes",
+    "title": "Data Preparation",
+    "section": "Step 1: Extract the nodes",
+    "text": "Step 1: Extract the nodes\n\n# extract all nodes\nmc2_nodes_all <- as_tibble(mc2$nodes) %>% \n  select(id, shpcountry, rcvcountry)\n\ndatatable(mc2_nodes_all, class = \"display\")"
+  },
+  {
+    "objectID": "data_preparation.html#step-2-extract-the-edges",
+    "href": "data_preparation.html#step-2-extract-the-edges",
+    "title": "Data Preparation",
+    "section": "Step 2: Extract the edges",
+    "text": "Step 2: Extract the edges\n\nmc2_edges_all <- as_tibble(mc2$links) %>% \n  mutate(ArrivalDate = ymd(arrivaldate)) %>% \n  mutate(Year = year(ArrivalDate)) %>% \n  select(source, target, ArrivalDate, Year, hscode, valueofgoods_omu,\n         volumeteu, weightkg, valueofgoodsusd) %>% \n  distinct()\n\ndatatable(head(mc2_edges_all, 5), class = \"display\")"
+  },
+  {
+    "objectID": "data_preparation.html#step-3-filter-hscode",
+    "href": "data_preparation.html#step-3-filter-hscode",
+    "title": "Data Preparation",
+    "section": "Step 3: Filter HSCode",
+    "text": "Step 3: Filter HSCode\nOur primary goal is to identify companies engaged in illegal fishing activities. In accordance with information from external sources, we need to focus on filtering out those companies with Harmonized System (HS) code prefixes ranging from 301 to 309.\n\nmc2_edges_fishing <- mc2_edges_all %>%\n  filter(str_sub(hscode, 1, 3) %in% c(\"301\", \"302\", \"303\", \"304\", \"305\", \"306\", \"307\", \"308\", \"309\"))"
+  },
+  {
+    "objectID": "data_preparation.html#step-4.-replace-missing-values-in-valueofgoodsusd",
+    "href": "data_preparation.html#step-4.-replace-missing-values-in-valueofgoodsusd",
+    "title": "Data Preparation",
+    "section": "Step 4. Replace missing values in “valueofgoodsusd”",
+    "text": "Step 4. Replace missing values in “valueofgoodsusd”\nWe discovered that the columns “valueofgoodsusd” and “valueofgoods_omu” both contained missing values. Some rows, however, provided values in both of these columns. Utilising this information, we were able to ascertain a conversion rate of 1.5384 (omu/usd). This conversion rate was subsequently employed to fill in the missing data in these columns.\n\nconversion_rate <- 1.5384 \nmc2_edges_fishing$valueofgoodsusd <- ifelse(is.na(mc2_edges_fishing$valueofgoodsusd), \n                              round(mc2_edges_fishing$valueofgoods_omu / conversion_rate,0), \n                              mc2_edges_fishing$valueofgoodsusd)\nmc2_edges_fishing <- mc2_edges_fishing %>%\n  select(source, target, ArrivalDate, Year, hscode,volumeteu, weightkg, valueofgoodsusd)"
+  },
+  {
+    "objectID": "data_preparation.html#step-5.-aggregate-shipment-frequency-total-weight-and-value-for-each-source-and-target-pair",
+    "href": "data_preparation.html#step-5.-aggregate-shipment-frequency-total-weight-and-value-for-each-source-and-target-pair",
+    "title": "Data Preparation",
+    "section": "Step 5. Aggregate shipment frequency, total weight and value for each source and target pair",
+    "text": "Step 5. Aggregate shipment frequency, total weight and value for each source and target pair\nFor each unique pair of source and target, we will aggregate the shipment counts to get the shipment frequency, sum the total weight kg and sum the total value of goods usd. We will also filter out where shipment counts is greater than 1.\nTo facilitate subsequent analyses by year, we will perform aggregation on two levels of granularity, by year and throughout all years.\n\n# aggregation by year\nmc2_edges_agg_year <- mc2_edges_fishing %>%\n  group_by(source, target, Year) %>%\n  summarise(weights = n(),\n            totalweightkg = sum(weightkg),\n            totalvalueofgoodsusd = sum(valueofgoodsusd)) %>% \n  filter(source!=target) %>%\n  filter(weights > 1) %>%\n  ungroup()\n\n# aggegation throughout all years\nmc2_edges_agg_all <- mc2_edges_agg_year %>%\n  group_by(source, target) %>%\n  summarise(weights = sum(weights),\n            totalweightkg = sum(totalweightkg),\n            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% \n  filter(source!=target) %>%\n  ungroup()"
+  },
+  {
+    "objectID": "data_preparation.html#step-6-update-nodes-based-on-filtered-edges",
+    "href": "data_preparation.html#step-6-update-nodes-based-on-filtered-edges",
+    "title": "Data Preparation",
+    "section": "Step 6: Update nodes based on filtered edges",
+    "text": "Step 6: Update nodes based on filtered edges\nInstead of using the nodes data table extracted from mc2, we will prepare a new nodes data table by using the source and target fields of the filtered mc2_edges_agg_all dataset. This is necessary to ensure that the nodes in nodes data tables include all the source and target values.\n\n# extract nodes from filtered edges\nid1 <- mc2_edges_agg_all %>% \n  select(source) %>% \n  rename(id = source)\n\nid2 <- mc2_edges_agg_all %>% \n  select(target) %>% \n  rename(id = target)\n\nmc2_nodes_extracted <- rbind(id1, id2) %>% \n  distinct()\n\n# left join with mc2_nodes_all to get shpcountry, rcvcountry info\nmc2_nodes <- mc2_nodes_extracted %>%\n  left_join(mc2_nodes_all, by=\"id\")"
+  },
+  {
+    "objectID": "data_preparation.html#compute-centrality-measures",
+    "href": "data_preparation.html#compute-centrality-measures",
+    "title": "Data Preparation",
+    "section": "Compute centrality measures",
+    "text": "Compute centrality measures\n\n# create the network graph \ncentrality_graph <- tbl_graph(nodes = mc2_nodes,\n                             edges = mc2_edges_agg_all,\n                             directed = TRUE)\n\n# calculate the centrality measures\ncentrality_graph <- centrality_graph %>%\n  mutate(in_deg_centrality = centrality_degree(weights = weights, \n                                               mode = \"in\")) %>% \n  mutate(out_deg_centrality = centrality_degree(weights = weights, \n                                               mode = \"out\")) %>% \n  mutate(betweenness_centrality = centrality_betweenness())"
+  },
+  {
+    "objectID": "data_preparation.html#list-of-top-100-exporters",
+    "href": "data_preparation.html#list-of-top-100-exporters",
+    "title": "Data Preparation",
+    "section": "List of Top 100 Exporters",
+    "text": "List of Top 100 Exporters\n\n# extract exporter nodes\nexporter_nodes <- centrality_graph %>% \n  activate(\"nodes\") %>% \n  as_tibble() %>% \n  arrange(desc(out_deg_centrality)) %>%\n  select(id, out_deg_centrality) %>% \n  head(n=100)\n\n# extract edges with exporter nodes on ends\nexporter_edges <- mc2_edges_agg_year %>%\n  filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])\n\n# extract nodes of these trades (to also visualise the partners of top exporters)\nid1_exporter_edges <- exporter_edges %>% \n  select(source) %>%\n  rename(id = source)\n\nid2_exporter_edges <- exporter_edges %>%\n  select(target) %>%\n  rename(id = target)\n\nexporter_nodes_and_partners <- rbind(id1_exporter_edges, id2_exporter_edges) %>%\n  distinct() %>% \n  mutate(top_exporters = case_when(\n    id %in% exporter_nodes[[\"id\"]] ~ \"Yes\",\n    TRUE ~ \"No\"\n  )) %>% \n  left_join(mc2_nodes_all, by=\"id\")"
+  },
+  {
+    "objectID": "data_preparation.html#list-of-top-100-importers",
+    "href": "data_preparation.html#list-of-top-100-importers",
+    "title": "Data Preparation",
+    "section": "List of Top 100 Importers",
+    "text": "List of Top 100 Importers\n\n# extract importer nodes\nimporter_nodes <- centrality_graph %>% \n  activate(\"nodes\") %>% \n  as_tibble() %>% \n  arrange(desc(in_deg_centrality)) %>%\n  select(id, in_deg_centrality) %>% \n  head(n=100)\n\n# extract edges with importer nodes on ends\nimporter_edges <- mc2_edges_agg_year %>%\n  filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])\n\n# extract nodes of these trades (to also visualise the partners of top importers)\nid1_importer_edges <- importer_edges %>% \n  select(source) %>%\n  rename(id = source)\n\nid2_importer_edges <- importer_edges %>%\n  select(target) %>%\n  rename(id = target)\n\nimporter_nodes_and_partners <- rbind(id1_importer_edges, id2_importer_edges) %>%\n  distinct() %>% \n  mutate(top_importers = case_when(\n    id %in% importer_nodes[[\"id\"]] ~ \"Yes\",\n    TRUE ~ \"No\"\n  )) %>% \n  left_join(mc2_nodes_all, by=\"id\")"
+  },
+  {
+    "objectID": "data_preparation.html#list-of-top-100-intermediaries",
+    "href": "data_preparation.html#list-of-top-100-intermediaries",
+    "title": "Data Preparation",
+    "section": "List of Top 100 Intermediaries",
+    "text": "List of Top 100 Intermediaries\n\n# extract intermediary nodes\nintermediary_nodes <- centrality_graph %>% \n  activate(\"nodes\") %>% \n  as_tibble() %>% \n  arrange(desc(betweenness_centrality)) %>%\n  select(id, betweenness_centrality) %>% \n  head(n=100)\n\n# extract edges with importer nodes on ends\nintermediary_edges <- mc2_edges_agg_year %>%\n  filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])\n\n# extract nodes of these trades (to also visualise the partners of top importers)\nid1_intermediary_edges <- intermediary_edges %>% \n  select(source) %>%\n  rename(id = source)\n\nid2_intermediary_edges <- intermediary_edges %>%\n  select(target) %>%\n  rename(id = target)\n\nintermediary_nodes_and_partners <- rbind(id1_intermediary_edges, id2_intermediary_edges) %>%\n  distinct() %>% \n  mutate(top_intermediaries = case_when(\n    id %in% intermediary_nodes[[\"id\"]] ~ \"Yes\",\n    TRUE ~ \"No\"\n  )) %>% \n  left_join(mc2_nodes_all, by=\"id\")"
+  },
+  {
+    "objectID": "data_preparation.html#flag-1-sudden-changes-in-shipment-frequency",
+    "href": "data_preparation.html#flag-1-sudden-changes-in-shipment-frequency",
+    "title": "Data Preparation",
+    "section": "Flag 1: Sudden changes in shipment frequency",
+    "text": "Flag 1: Sudden changes in shipment frequency\nAn illegal fishing company is likely to significantly increase or decrease its shipment frequency suddenly. This can be a sign that the company is trying to avoid detection, manipulate market prices, or respond to changes in enforcement intensity.\nApproach: calculate an average shipping frequency over a 2 year period and get a list of companies with sudden changes in their shipment volume over each time period compared to their threshold.\n\n# # filter out source-target pairs with only one year of data\n# # this part may not be necessary as pairs with 1 year data will be filtered out with the threshold\n# distinct_mc2_edges_aggregated <- mc2_edges_agg_year %>%\n#   group_by(source, target) %>%\n#   summarize(distinct_count = n()) %>%\n#   ungroup() %>%\n#   filter(distinct_count > 1)\n# \n# mc2_edges_agg_year_changes <- inner_join(mc2_edges_agg_year, distinct_mc2_edges_aggregated, by = c(\"source\", \"target\"))\n\n# filter out edges with total shipping frequency of at least 20 across all years\nmc2_edges_agg_year_filtered <- mc2_edges_agg_year %>% \n  group_by(source, target) %>% \n  summarise(weights = sum(weights)) %>% \n  filter(weights > 20) %>% \n  ungroup() %>% \n  select(source, target) %>% \n  inner_join(mc2_edges_agg_year, by = c(\"source\", \"target\"))\n\n# compute the percentage change in shipping frequency\nfrequency_pct <- mc2_edges_agg_year_filtered %>%\n  group_by(source, target) %>%\n  arrange(Year) %>%\n  mutate(PercentageChange = weights / lag(weights) - 1)\n\n# set threshold of change to flag out\nthreshold <- 0.5\n\n# flag out companies\nmc2_sudden_changes <- frequency_pct %>%\n  filter(abs(PercentageChange) > threshold)\n\ncompany_list_frequency <- unique(mc2_sudden_changes$source)\nlength(company_list_frequency)\n\n[1] 1114\n\n\n\n\n\n\n\n\nTo check:\n\n\n\n\nNow that we filter out all edges with weights > 1, there are over 1678 source companies flagged out. Should we adjust the threshold? Alternatively, we can adjust the weight to filter out for this list (added in the code to filter out where total shipping frequency across all years less than 20) - become 1114 companies\nInstead of extracting only the source nodes, should be be extracting the source-target pairs instead from this red flag?"
+  },
+  {
+    "objectID": "data_preparation.html#flag-2-abnormal-shipment-values-over-years",
+    "href": "data_preparation.html#flag-2-abnormal-shipment-values-over-years",
+    "title": "Data Preparation",
+    "section": "Flag 2: abnormal shipment values over years",
+    "text": "Flag 2: abnormal shipment values over years\nAn illegal fishing company might under-declare the weight of their catch to minimise attention and lower duties or taxes. On the other side, it might also over-declare the value of their shipment to over-insure it. These would lead to an abnormally high value-weight ratio.\nApproach: In order to detect irregularities in the declared value of goods, we analyse the shipment values and shipment weight ratios for each fishing entity. We establish a threshold value that captures the range within which 95% of the data in the value_weight_ratio_change variable falls. If the value_weight_ratio_change surpasses this threshold, we flag the corresponding fishing company as having an abnormal occurrence.\n\n# compute the value-weight ratio and the value-weight ratio change\nmc2_edges_fishing_stats <- mc2_edges_agg_year_filtered %>%\n  arrange(source, target, Year) %>%\n  group_by(source, target) %>%\n  mutate(value_weight_ratio = totalvalueofgoodsusd / totalweightkg) %>%\n  mutate(value_weight_ratio_change = value_weight_ratio / lag(value_weight_ratio) - 1)\n\n# set threshold of change to flag out\nthreshold <- quantile(mc2_edges_fishing_stats$value_weight_ratio_change, 0.95, na.rm = TRUE) \n\n# flag out companies\nmc2_edges_fishing_abnormal <- mc2_edges_fishing_stats %>%\n  filter(abs(value_weight_ratio_change) > threshold)\n\ncompany_list_ratio <- unique(mc2_edges_fishing_abnormal$source)\nlength(company_list_ratio)\n\n[1] 320\n\n\n\n\n\n\n\n\nTo check:\n\n\n\n\nInstead of extracting only the source nodes, should be be extracting the source-target pairs instead from this red flag?"
+  },
+  {
+    "objectID": "data_preparation.html#list-of-companies-with-red-flags",
+    "href": "data_preparation.html#list-of-companies-with-red-flags",
+    "title": "Data Preparation",
+    "section": "List of companies with red-flags",
+    "text": "List of companies with red-flags\n\nred_flagged_companies <- intersect(company_list_ratio, company_list_frequency)\nred_flagged_companies <- data.frame(id = unlist(red_flagged_companies))\ndatatable(red_flagged_companies, options = list(pageLength = 5))\n\n\n\n\n\n\n\n\n\n\n\n\nTo check:\n\n\n\nDepending on the length of the two red flag lists after adjustment, we may choose to take intersect or the combined list as long as they hit any one red flag."
   }
 ]

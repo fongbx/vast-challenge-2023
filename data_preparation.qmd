@@ -38,7 +38,8 @@ datatable(mc2_nodes_all, class = "display")
 mc2_edges_all <- as_tibble(mc2$links) %>% 
   mutate(ArrivalDate = ymd(arrivaldate)) %>% 
   mutate(Year = year(ArrivalDate)) %>% 
-  select(source, target, ArrivalDate, Year, hscode, valueofgoods_omu,
+  mutate(Month = month(ArrivalDate)) %>% 
+  select(source, target, ArrivalDate, Year, Month, hscode, valueofgoods_omu,
          volumeteu, weightkg, valueofgoodsusd) %>% 
   distinct()
 
@@ -63,25 +64,44 @@ conversion_rate <- 1.5384
 mc2_edges_fishing$valueofgoodsusd <- ifelse(is.na(mc2_edges_fishing$valueofgoodsusd), 
                               round(mc2_edges_fishing$valueofgoods_omu / conversion_rate,0), 
                               mc2_edges_fishing$valueofgoodsusd)
+
 mc2_edges_fishing <- mc2_edges_fishing %>%
-  select(source, target, ArrivalDate, Year, hscode,volumeteu, weightkg, valueofgoodsusd)
+  select(source, target, ArrivalDate, Year, Month, hscode, volumeteu, weightkg, valueofgoodsusd)
 ```
 
 ## Step 5. Aggregate shipment frequency, total weight and value for each source and target pair
 
-For each unique pair of source and target, we will aggregate the shipment counts to get the shipment frequency, sum the total weight kg and sum the total value of goods usd. We will also filter out where shipment counts is greater than 1.
+As the edges are very numerous, we will filter out source-target pairs that have traded 20 times or more throughout all the years. From the filtered source-target pairs, we will aggregate the shipment counts to get the shipment frequency, sum the total weight kg and sum the total value of goods usd. Three sets of data will be prepared to facilitate different types of analyses:
 
-To facilitate subsequent analyses by year, we will perform aggregation on two levels of granularity, by year and throughout all years.
+-   Aggregation by year and month - for performing analysis by year and month
+-   Aggregation by year - for performing analysis by year
+-   Total aggregation - for performing analysis across the entire period
 
 ```{r}
-# aggregation by year
-mc2_edges_agg_year <- mc2_edges_fishing %>%
-  group_by(source, target, Year) %>%
+# filter out edges with total shipping frequency of at least 20 across all years
+mc2_edges_fishing_filtered <- mc2_edges_fishing %>% 
+  group_by(source, target) %>% 
+  summarise(weights = n()) %>% 
+  filter(weights > 20) %>% 
+  filter(source!=target) %>%
+  ungroup() %>% 
+  select(source, target)
+
+# aggregation by year and month
+mc2_edges_agg_year_month <- mc2_edges_fishing %>% 
+  inner_join(mc2_edges_fishing_filtered, by = c("source", "target")) %>% 
+  group_by(source, target, Year, Month) %>% 
   summarise(weights = n(),
             totalweightkg = sum(weightkg),
             totalvalueofgoodsusd = sum(valueofgoodsusd)) %>% 
-  filter(source!=target) %>%
-  filter(weights > 1) %>%
+  ungroup()
+
+# aggregation by year
+mc2_edges_agg_year <- mc2_edges_agg_year_month %>% 
+  group_by(source, target, Year) %>%
+  summarise(weights = sum(weights),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
   ungroup()
 
 # aggegation throughout all years
@@ -90,7 +110,6 @@ mc2_edges_agg_all <- mc2_edges_agg_year %>%
   summarise(weights = sum(weights),
             totalweightkg = sum(totalweightkg),
             totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
-  filter(source!=target) %>%
   ungroup()
 ```
 
@@ -152,16 +171,19 @@ exporter_nodes <- centrality_graph %>%
   select(id, out_deg_centrality) %>% 
   head(n=100)
 
-# extract edges with exporter nodes on ends
-exporter_edges <- mc2_edges_agg_year %>%
+# extract edges with exporter nodes on ends (year_month and year granularity)
+exporter_edges_year_month <- mc2_edges_agg_year_month %>%
+  filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])
+
+exporter_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top exporters)
-id1_exporter_edges <- exporter_edges %>% 
+id1_exporter_edges <- exporter_edges_year_month %>% 
   select(source) %>%
   rename(id = source)
 
-id2_exporter_edges <- exporter_edges %>%
+id2_exporter_edges <- exporter_edges_year_month %>%
   select(target) %>%
   rename(id = target)
 
@@ -172,6 +194,11 @@ exporter_nodes_and_partners <- rbind(id1_exporter_edges, id2_exporter_edges) %>%
     TRUE ~ "No"
   )) %>% 
   left_join(mc2_nodes_all, by="id")
+
+# export files to csv
+# write_csv(exporter_edges_year_month, "exporter_edges_year_month.csv")
+# write_csv(exporter_edges_year, "exporter_edges_year.csv")
+# write_csv(exporter_nodes_and_partners, "exporter_nodes_and_partners.csv")
 ```
 
 ## List of Top 100 Importers
@@ -185,16 +212,19 @@ importer_nodes <- centrality_graph %>%
   select(id, in_deg_centrality) %>% 
   head(n=100)
 
-# extract edges with importer nodes on ends
-importer_edges <- mc2_edges_agg_year %>%
+# extract edges with importer nodes on ends (year_month and year granularity)
+importer_edges_year_month <- mc2_edges_agg_year_month %>%
+  filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])
+
+importer_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top importers)
-id1_importer_edges <- importer_edges %>% 
+id1_importer_edges <- importer_edges_year_month %>% 
   select(source) %>%
   rename(id = source)
 
-id2_importer_edges <- importer_edges %>%
+id2_importer_edges <- importer_edges_year_month %>%
   select(target) %>%
   rename(id = target)
 
@@ -205,6 +235,11 @@ importer_nodes_and_partners <- rbind(id1_importer_edges, id2_importer_edges) %>%
     TRUE ~ "No"
   )) %>% 
   left_join(mc2_nodes_all, by="id")
+
+# export files to csv
+# write_csv(importer_edges_year_month, "importer_edges_year_month.csv")
+# write_csv(importer_edges_year, "importer_edges_year.csv")
+# write_csv(importer_nodes_and_partners, "importer_nodes_and_partners.csv")
 ```
 
 ## List of Top 100 Intermediaries
@@ -218,16 +253,19 @@ intermediary_nodes <- centrality_graph %>%
   select(id, betweenness_centrality) %>% 
   head(n=100)
 
-# extract edges with importer nodes on ends
-intermediary_edges <- mc2_edges_agg_year %>%
+# extract edges with intermediary nodes on ends (year_month and year granularity)
+intermediary_edges_year_month <- mc2_edges_agg_year_month %>%
+  filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])
+
+intermediary_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top importers)
-id1_intermediary_edges <- intermediary_edges %>% 
+id1_intermediary_edges <- intermediary_edges_year_month %>% 
   select(source) %>%
   rename(id = source)
 
-id2_intermediary_edges <- intermediary_edges %>%
+id2_intermediary_edges <- intermediary_edges_year_month %>%
   select(target) %>%
   rename(id = target)
 
@@ -238,6 +276,11 @@ intermediary_nodes_and_partners <- rbind(id1_intermediary_edges, id2_intermediar
     TRUE ~ "No"
   )) %>% 
   left_join(mc2_nodes_all, by="id")
+
+# export files to csv
+# write_csv(intermediary_edges_year_month, "intermediary_edges_year_month.csv")
+# write_csv(intermediary_edges_year, "intermediary_edges_year.csv")
+# write_csv(intermediary_nodes_and_partners, "intermediary_nodes_and_partners.csv")
 ```
 
 # Identification of Red-Flagged Companies
@@ -261,19 +304,10 @@ Approach: calculate an average shipping frequency over a 2 year period and get a
 # 
 # mc2_edges_agg_year_changes <- inner_join(mc2_edges_agg_year, distinct_mc2_edges_aggregated, by = c("source", "target"))
 
-# filter out edges with total shipping frequency of at least 20 across all years
-mc2_edges_agg_year_filtered <- mc2_edges_agg_year %>% 
-  group_by(source, target) %>% 
-  summarise(weights = sum(weights)) %>% 
-  filter(weights > 20) %>% 
-  ungroup() %>% 
-  select(source, target) %>% 
-  inner_join(mc2_edges_agg_year, by = c("source", "target"))
-
 # compute the percentage change in shipping frequency
-frequency_pct <- mc2_edges_agg_year_filtered %>%
+frequency_pct <- mc2_edges_agg_year %>%
   group_by(source, target) %>%
-  arrange(Year) %>%
+  arrange(source, target, Year) %>%
   mutate(PercentageChange = weights / lag(weights) - 1)
 
 # set threshold of change to flag out
@@ -302,9 +336,9 @@ Approach: In order to detect irregularities in the declared value of goods, we a
 
 ```{r}
 # compute the value-weight ratio and the value-weight ratio change
-mc2_edges_fishing_stats <- mc2_edges_agg_year_filtered %>%
-  arrange(source, target, Year) %>%
+mc2_edges_fishing_stats <- mc2_edges_agg_year %>%
   group_by(source, target) %>%
+  arrange(source, target, Year) %>%
   mutate(value_weight_ratio = totalvalueofgoodsusd / totalweightkg) %>%
   mutate(value_weight_ratio_change = value_weight_ratio / lag(value_weight_ratio) - 1)
 

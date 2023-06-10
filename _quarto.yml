@@ -11,7 +11,8 @@ website:
       - icon: house-fill
         href: index.qmd
         text: Home
-      - proposal.qmd      
+      - proposal.qmd
+      - data_preparation.qmd
       - about.qmd
 
 format:

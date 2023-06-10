@@ -82,7 +82,7 @@ As the edges are very numerous, we will filter out source-target pairs that have
 mc2_edges_fishing_filtered <- mc2_edges_fishing %>% 
   group_by(source, target) %>% 
   summarise(weights = n()) %>% 
-  filter(weights > 20) %>% 
+  filter(weights > 50) %>% 
   filter(source!=target) %>%
   ungroup() %>% 
   select(source, target)
@@ -133,6 +133,112 @@ mc2_nodes_extracted <- rbind(id1, id2) %>%
 # left join with mc2_nodes_all to get shpcountry, rcvcountry info
 mc2_nodes <- mc2_nodes_extracted %>%
   left_join(mc2_nodes_all, by="id")
+
+# export files to csv
+# write_csv(mc2_edges_agg_year, "all_edges_year.csv")
+# write_csv(mc2_nodes, "all_nodes.csv")
+```
+
+# Identification of Red-Flagged Companies
+
+In order to detect companies that may be engaged in illegal fishing practices, we utilised two methods centered around analysing their shipping frequency and identifying any unusual changes in the value of their shipments over time. Companies displaying both of these traits were regarded as suspicious and subsequently marked as potential entities involved in illegal fishing.
+
+## Flag 1: Sudden changes in shipment frequency
+
+An illegal fishing company is likely to significantly increase or decrease its shipment frequency suddenly. This can be a sign that the company is trying to avoid detection, manipulate market prices, or respond to changes in enforcement intensity.
+
+Approach: calculate an average shipping frequency over a 2 year period and get a list of companies with sudden changes in their shipment volume over each time period compared to their threshold.
+
+```{r}
+# compute the percentage change in shipping frequency
+mc2_frequency_pct <- mc2_edges_agg_year %>%
+  group_by(source, target) %>%
+  arrange(source, target, Year) %>%
+  mutate(PercentageChange = weights / lag(weights) - 1) %>% 
+  ungroup()
+
+# set threshold of change to flag out
+threshold <- 8
+
+# flag out trades that meet red flag 1
+mc2_red_flag1_edges <- mc2_frequency_pct %>%
+  filter(abs(PercentageChange) > threshold)
+
+mc2_red_flag1_edges
+
+# extract source-target pairs of these trades
+mc2_red_flag1_pairs <- mc2_red_flag1_edges %>% 
+  select(source, target) %>% 
+  distinct()
+
+# extract nodes of these trades (to also visualise the partners of top importers)
+id1_red_flag1 <- mc2_red_flag1_pairs %>% 
+  select(source) %>%
+  rename(id = source)
+
+id2_red_flag1 <- mc2_red_flag1_pairs %>%
+  select(target) %>%
+  rename(id = target)
+
+red_flag1_nodes <- rbind(id1_red_flag1, id2_red_flag1) %>%
+  distinct() %>% 
+  left_join(mc2_nodes_all, by="id")
+
+length(red_flag1_nodes$id)
+```
+
+## Flag 2: abnormal shipment values over years
+
+An illegal fishing company might under-declare the weight of their catch to minimise attention and lower duties or taxes. On the other side, it might also over-declare the value of their shipment to over-insure it. These would lead to an abnormally high value-weight ratio.
+
+Approach: In order to detect irregularities in the declared value of goods, we analyse the shipment values and shipment weight ratios for each fishing entity. We establish a threshold value that captures the range within which 95% of the data in the `value_weight_ratio_change` variable falls. If the `value_weight_ratio_change` surpasses this threshold, we flag the corresponding fishing company as having an abnormal occurrence.
+
+```{r}
+# compute the value-weight ratio and the value-weight ratio change
+mc2_edges_fishing_stats <- mc2_edges_agg_year %>%
+  group_by(source, target) %>%
+  arrange(source, target, Year) %>%
+  mutate(value_weight_ratio = totalvalueofgoodsusd / totalweightkg) %>%
+  mutate(value_weight_ratio_change = value_weight_ratio / lag(value_weight_ratio) - 1) %>% 
+  ungroup()
+
+# set threshold of change to flag out
+threshold <- quantile(mc2_edges_fishing_stats$value_weight_ratio_change, 0.95, na.rm = TRUE) 
+
+# flag out trades that meet red flag 2
+mc2_red_flag2_edges <- mc2_edges_fishing_stats %>%
+  filter(abs(value_weight_ratio_change) > threshold)
+
+# extract source-target pairs of these trades
+mc2_red_flag2_pairs <- mc2_red_flag2_edges %>% 
+  select(source, target) %>% 
+  distinct()
+
+# extract nodes of these trades (to also visualise the partners of top importers)
+id1_red_flag2 <- mc2_red_flag2_pairs %>% 
+  select(source) %>%
+  rename(id = source)
+
+id2_red_flag2 <- mc2_red_flag2_pairs %>%
+  select(target) %>%
+  rename(id = target)
+
+red_flag2_nodes <- rbind(id1_red_flag2, id2_red_flag2) %>%
+  distinct() %>% 
+  left_join(mc2_nodes_all, by="id")
+
+length(red_flag2_nodes$id)
+```
+
+## List of companies with red-flags
+
+```{r}
+# find our companies that meet two red flags
+red_flagged_companies_both <- intersect(red_flag1_nodes, red_flag2_nodes)
+
+# find our companies that meet any one red flag
+red_flagged_companies_any <- rbind(red_flag1_nodes, red_flag2_nodes) %>%
+  distinct()
 ```
 
 # Identification of Top Exporters, Importers and Intermediaries
@@ -193,12 +299,20 @@ exporter_nodes_and_partners <- rbind(id1_exporter_edges, id2_exporter_edges) %>%
     id %in% exporter_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
+  mutate(red_flag1 = case_when(
+    id %in% red_flag1_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
+  mutate(red_flag2 = case_when(
+    id %in% red_flag2_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
   left_join(mc2_nodes_all, by="id")
 
 # export files to csv
-# write_csv(exporter_edges_year_month, "exporter_edges_year_month.csv")
-# write_csv(exporter_edges_year, "exporter_edges_year.csv")
-# write_csv(exporter_nodes_and_partners, "exporter_nodes_and_partners.csv")
+write_csv(exporter_edges_year_month, "exporter_edges_year_month.csv")
+write_csv(exporter_edges_year, "exporter_edges_year.csv")
+write_csv(exporter_nodes_and_partners, "exporter_nodes_and_partners.csv")
 ```
 
 ## List of Top 100 Importers
@@ -234,12 +348,20 @@ importer_nodes_and_partners <- rbind(id1_importer_edges, id2_importer_edges) %>%
     id %in% importer_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
+  mutate(red_flag1 = case_when(
+    id %in% red_flag1_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
+  mutate(red_flag2 = case_when(
+    id %in% red_flag2_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
   left_join(mc2_nodes_all, by="id")
 
 # export files to csv
-# write_csv(importer_edges_year_month, "importer_edges_year_month.csv")
-# write_csv(importer_edges_year, "importer_edges_year.csv")
-# write_csv(importer_nodes_and_partners, "importer_nodes_and_partners.csv")
+write_csv(importer_edges_year_month, "importer_edges_year_month.csv")
+write_csv(importer_edges_year, "importer_edges_year.csv")
+write_csv(importer_nodes_and_partners, "importer_nodes_and_partners.csv")
 ```
 
 ## List of Top 100 Intermediaries
@@ -275,100 +397,18 @@ intermediary_nodes_and_partners <- rbind(id1_intermediary_edges, id2_intermediar
     id %in% intermediary_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
+  mutate(red_flag1 = case_when(
+    id %in% red_flag1_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
+  mutate(red_flag2 = case_when(
+    id %in% red_flag2_nodes[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
   left_join(mc2_nodes_all, by="id")
 
 # export files to csv
-# write_csv(intermediary_edges_year_month, "intermediary_edges_year_month.csv")
-# write_csv(intermediary_edges_year, "intermediary_edges_year.csv")
-# write_csv(intermediary_nodes_and_partners, "intermediary_nodes_and_partners.csv")
+write_csv(intermediary_edges_year_month, "intermediary_edges_year_month.csv")
+write_csv(intermediary_edges_year, "intermediary_edges_year.csv")
+write_csv(intermediary_nodes_and_partners, "intermediary_nodes_and_partners.csv")
 ```
-
-# Identification of Red-Flagged Companies
-
-In order to detect companies that may be engaged in illegal fishing practices, we utilised two methods centered around analysing their shipping frequency and identifying any unusual changes in the value of their shipments over time. Companies displaying both of these traits were regarded as suspicious and subsequently marked as potential entities involved in illegal fishing.
-
-## Flag 1: Sudden changes in shipment frequency
-
-An illegal fishing company is likely to significantly increase or decrease its shipment frequency suddenly. This can be a sign that the company is trying to avoid detection, manipulate market prices, or respond to changes in enforcement intensity.
-
-Approach: calculate an average shipping frequency over a 2 year period and get a list of companies with sudden changes in their shipment volume over each time period compared to their threshold.
-
-```{r}
-# # filter out source-target pairs with only one year of data
-# # this part may not be necessary as pairs with 1 year data will be filtered out with the threshold
-# distinct_mc2_edges_aggregated <- mc2_edges_agg_year %>%
-#   group_by(source, target) %>%
-#   summarize(distinct_count = n()) %>%
-#   ungroup() %>%
-#   filter(distinct_count > 1)
-# 
-# mc2_edges_agg_year_changes <- inner_join(mc2_edges_agg_year, distinct_mc2_edges_aggregated, by = c("source", "target"))
-
-# compute the percentage change in shipping frequency
-frequency_pct <- mc2_edges_agg_year %>%
-  group_by(source, target) %>%
-  arrange(source, target, Year) %>%
-  mutate(PercentageChange = weights / lag(weights) - 1)
-
-# set threshold of change to flag out
-threshold <- 0.5
-
-# flag out companies
-mc2_sudden_changes <- frequency_pct %>%
-  filter(abs(PercentageChange) > threshold)
-
-company_list_frequency <- unique(mc2_sudden_changes$source)
-length(company_list_frequency)
-```
-
-::: callout-note
-## To check:
-
--   Now that we filter out all edges with weights \> 1, there are over 1678 source companies flagged out. Should we adjust the threshold? Alternatively, we can adjust the weight to filter out for this list (added in the code to filter out where total shipping frequency across all years less than 20) - become 1114 companies
--   Instead of extracting only the source nodes, should be be extracting the source-target pairs instead from this red flag?
-:::
-
-## Flag 2: abnormal shipment values over years
-
-An illegal fishing company might under-declare the weight of their catch to minimise attention and lower duties or taxes. On the other side, it might also over-declare the value of their shipment to over-insure it. These would lead to an abnormally high value-weight ratio.
-
-Approach: In order to detect irregularities in the declared value of goods, we analyse the shipment values and shipment weight ratios for each fishing entity. We establish a threshold value that captures the range within which 95% of the data in the `value_weight_ratio_change` variable falls. If the `value_weight_ratio_change` surpasses this threshold, we flag the corresponding fishing company as having an abnormal occurrence.
-
-```{r}
-# compute the value-weight ratio and the value-weight ratio change
-mc2_edges_fishing_stats <- mc2_edges_agg_year %>%
-  group_by(source, target) %>%
-  arrange(source, target, Year) %>%
-  mutate(value_weight_ratio = totalvalueofgoodsusd / totalweightkg) %>%
-  mutate(value_weight_ratio_change = value_weight_ratio / lag(value_weight_ratio) - 1)
-
-# set threshold of change to flag out
-threshold <- quantile(mc2_edges_fishing_stats$value_weight_ratio_change, 0.95, na.rm = TRUE) 
-
-# flag out companies
-mc2_edges_fishing_abnormal <- mc2_edges_fishing_stats %>%
-  filter(abs(value_weight_ratio_change) > threshold)
-
-company_list_ratio <- unique(mc2_edges_fishing_abnormal$source)
-length(company_list_ratio)
-```
-
-::: callout-note
-## To check:
-
--   Instead of extracting only the source nodes, should be be extracting the source-target pairs instead from this red flag?
-:::
-
-## List of companies with red-flags
-
-```{r}
-red_flagged_companies <- intersect(company_list_ratio, company_list_frequency)
-red_flagged_companies <- data.frame(id = unlist(red_flagged_companies))
-datatable(red_flagged_companies, options = list(pageLength = 5))
-```
-
-::: callout-note
-## To check:
-
-Depending on the length of the two red flag lists after adjustment, we may choose to take intersect or the combined list as long as they hit any one red flag.
-:::

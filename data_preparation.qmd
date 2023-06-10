@@ -9,7 +9,8 @@ date-modified: "`r Sys.Date()`"
 ## Import R Packages
 
 ```{r}
-pacman::p_load(tidyverse, lubridate, jsonlite, tidygraph, ggraph, visNetwork, igraph, plotly, RColorBrewer, DT)
+pacman::p_load(tidyverse, lubridate, jsonlite, tidygraph, ggraph,
+               visNetwork, igraph, plotly, RColorBrewer, DT)
 ```
 
 ## Import Data
@@ -82,7 +83,7 @@ As the edges are very numerous, we will filter out source-target pairs that have
 mc2_edges_fishing_filtered <- mc2_edges_fishing %>% 
   group_by(source, target) %>% 
   summarise(weights = n()) %>% 
-  filter(weights > 50) %>% 
+  filter(weights > 20) %>% 
   filter(source!=target) %>%
   ungroup() %>% 
   select(source, target)
@@ -135,8 +136,8 @@ mc2_nodes <- mc2_nodes_extracted %>%
   left_join(mc2_nodes_all, by="id")
 
 # export files to csv
-# write_csv(mc2_edges_agg_year, "all_edges_year.csv")
-# write_csv(mc2_nodes, "all_nodes.csv")
+write_csv(mc2_edges_agg_year, "all_edges_year.csv")
+write_csv(mc2_nodes, "all_nodes.csv")
 ```
 
 # Identification of Red-Flagged Companies
@@ -163,8 +164,6 @@ threshold <- 8
 # flag out trades that meet red flag 1
 mc2_red_flag1_edges <- mc2_frequency_pct %>%
   filter(abs(PercentageChange) > threshold)
-
-mc2_red_flag1_edges
 
 # extract source-target pairs of these trades
 mc2_red_flag1_pairs <- mc2_red_flag1_edges %>% 

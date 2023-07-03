@@ -137,10 +137,8 @@ ui <- page_navbar(
   nav_panel(
     "User Guide",
     icon = icon("circle-info"),
-    
     card(full_screen = TRUE,
-         card_image(file = "www/userguide.png",
-                    width = "100%"))
+         card_image(file = "www/userguide.svg"))
   ),
   
   # ENTITY HEATMAP PANEL  ---------------------------------------------------
@@ -269,7 +267,7 @@ ui <- page_navbar(
           ),
           
           # Display value boxes
-          layout_columns(fill = FALSE,!!!vbs),
+          layout_columns(fill = FALSE, !!!vbs),
           
           # Display network graphs
           layout_columns(
@@ -453,17 +451,17 @@ server <- function(input, output, session) {
     if (input$bundleoverview == "Exporters") {
       nodes_check <- exporter_nodes %>%
         filter(top_exporters == "Yes") %>%
-        select(-in_deg_centrality,-betweenness_centrality) %>%
+        select(-in_deg_centrality, -betweenness_centrality) %>%
         arrange(desc(out_deg_centrality))
     } else if (input$bundleoverview == "Intermediaries") {
       nodes_check <- intermediary_nodes %>%
         filter(top_intermediaries == "Yes") %>%
-        select(-in_deg_centrality,-out_deg_centrality) %>%
+        select(-in_deg_centrality, -out_deg_centrality) %>%
         arrange(desc(betweenness_centrality))
     } else if (input$bundleoverview == "Importers") {
       nodes_check <- importer_nodes %>%
         filter(top_importers == "Yes") %>%
-        select(-out_deg_centrality,-betweenness_centrality) %>%
+        select(-out_deg_centrality, -betweenness_centrality) %>%
         arrange(desc(in_deg_centrality))
     }
     

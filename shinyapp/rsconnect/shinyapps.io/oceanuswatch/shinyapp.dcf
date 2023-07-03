@@ -5,9 +5,9 @@ account: oceanuswatch
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9399556
-bundleId: 7416219
+bundleId: 7416242
 url: https://oceanuswatch.shinyapps.io/shinyapp/
-when: 1688424231.17748
-lastSyncTime: 1688424231.17749
+when: 1688425198.03852
+lastSyncTime: 1688425198.03853
 asMultiple: FALSE
 asStatic: FALSE

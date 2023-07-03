@@ -10,14 +10,16 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - proposal.qmd
+      - text: Proposal
+        href: proposal.qmd
       - text: Poster
         href: pdf/VAA_project_poster.pdf
       - text: RShiny App
         href: https://oceanuswatch.shinyapps.io/shinyapp/
     right:
       - icon: person-circle
-        href: about.qmd 
+        href: about.qmd
+        text: About
       - icon: github
         href: https://github.com/fongbx/vast-challenge-2023
         text: Github

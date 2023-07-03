@@ -182,10 +182,10 @@ ui <- page_navbar(
                "entityoverviewheader"
              ))),
              p(
-               "Uncover entities with unexpected trade pattern variations over time using the heatmaps below.
+               "Uncover entities with unexpected trade pattern variations over time using the heatmap below.
           Filter by",
                tags$i(strong("Bundle")),
-               "and selected",
+               "and",
                tags$i(strong("Entity Range")),
                "for specific insights."
              ),

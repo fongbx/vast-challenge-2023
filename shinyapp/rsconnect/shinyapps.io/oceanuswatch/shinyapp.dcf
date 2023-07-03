@@ -1,0 +1,13 @@
+name: shinyapp
+title: shinyapp
+username:
+account: oceanuswatch
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9399556
+bundleId: 7413645
+url: https://oceanuswatch.shinyapps.io/shinyapp/
+when: 1688373048.78775
+lastSyncTime: 1688373048.78776
+asMultiple: FALSE
+asStatic: FALSE

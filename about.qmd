@@ -1,5 +1,5 @@
 ---
-title: "About Us"
+title: "About"
 ---
 
 ------------------------------------------------------------------------
@@ -13,5 +13,17 @@ title: "About Us"
 **Our Mentor:**
 
 [**Prof KAM Tin Seong**](https://faculty.smu.edu.sg/profile/kam-tin-seong-486) <br>Full-time Faculty, Singapore Management University <br>Associate Professor of Information Systems (Practice)
+
+</center>
+
+------------------------------------------------------------------------
+
+<center>
+
+**References:**
+
+We also wish to give credits to the following authors whose websites we have referenced in the course of our project:
+
+[**Neo Yi Xin**](https://isss608-neoyixin.netlify.app/take-home_ex/take-home_ex02/take-home_ex02) \| [**Hailey Cheong Sze-Yenn**](https://isss608-ay2023-haileycsy.netlify.app/take-home_ex/take-home_ex02/take-home_ex02)
 
 </center>

@@ -1,10 +1,15 @@
 ---
 title: "Oceanus Watch"
 subtitle: "Visual Analytics for Uncovering Illegal Fishing Networks"
+image: images/cover.jpg
+about:
+  template: jolla
+  image-shape: rectangle
+  image-width: 40em
+  links:
+    - icon: window
+      text: Visit our Rshiny App
+      href: https://oceanuswatch.shinyapps.io/shinyapp/
 ---
 
-------------------------------------------------------------------------
-
-![](images/cover.jpg){fig-align="center" width="743"}
-
-<center>This Visual Analytics Project is based on [Vast Challenge 2023](https://vast-challenge.github.io/2023/).</center>
+<center>Welcome to our website! Join us in our Visual Analytics Project, based on [Vast Challenge 2023](https://vast-challenge.github.io/2023/MC2.html), where we aim to expose illegal fishing networks through advanced data visualisation.</center>

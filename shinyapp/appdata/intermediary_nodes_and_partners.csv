@@ -1,0 +1,496 @@
+id,top_intermediaries,red_flag1,red_flag2,shpcountry,rcvcountry,in_deg_centrality,out_deg_centrality,betweenness_centrality
+ Direct Herring Company Transit,No,No,No,Mawazam,Coralmarica,0,50,0
+2 Limited Liability Company,No,Yes,Yes,Marebak,Oceanus,0,981,0
+2 Wharf S.A. de C.V. Delivery,No,No,No,Merigrad,Oceanus,0,151,0
+3 Oceanography ОАО Marine life,Yes,Yes,Yes,Faraluna,Oceanus,4871,26,52.5
+4 Limited Liability Company Seaport,No,No,No,Mawazam,Morolaria,0,257,0
+4 N.V. Marine biology,Yes,No,No,Brindisola,Oceanus,78,168,2
+Adair S.A. de C.V.,No,No,No,Mawazam,Oceanus,0,127,0
+Adriatic Catch Ltd. Liability Co Transportation,No,Yes,No,Vesperanda,Coralmarica,0,1385,0
+Adriatic Tuna AS Solutions,No,Yes,Yes,Mawazam,Oceanus,0,806,0
+Adriatic Tuna ОАО Carriers,No,No,No,Marebak,Oceanus,0,89,0
+Amerigo Dockyard S.p.A. Distribution,Yes,No,No,Polarinda,Oceanus,171,213,12
+Ancla del Este AS,No,No,No,Utoporiana,Oceanus,0,201,0
+Andhra Pradesh  Ltd. Liability Co,No,Yes,Yes,Coralmarica,Oceanus,0,274,0
+Angeline Sea NV Worldwide,No,No,No,Merigrad,NA,0,502,0
+Aqua Adventures Carriers Seabed,No,No,No,Mawazam,NA,0,1175,0
+Aqua Adventures Ges.m.b.H. Roe,No,No,No,Marebak,NA,0,46,0
+Aqua Aura LLC Investment,No,Yes,Yes,Marebak,NA,0,820,0
+Aqua Aura SE Marine life,No,Yes,Yes,Kondanovia,Oceanus,0,2627,0
+Aqua Azul BV Merchants,No,No,No,Coralmarica,Oceanus,0,22,0
+Aqua Mermaid Seafarer Sp Solutions,No,No,Yes,Isliandor,NA,0,509,0
+Aqua Ventures Wave Sp Marine sanctuary,No,No,No,Marebak,NA,0,28,0
+AquaCuisine  Ltd. Liability Co,No,Yes,No,Osterivaria,Oceanus,0,169,0
+AquaCuisine AG Marine ecology,No,No,Yes,Marebak,Marebak,0,165,0
+Arena de Coral A/S,Yes,No,Yes,Mawazam,Coralmarica,33,33,2
+Arena del Sol Incorporated,No,No,No,Marebak,Marebak,0,129,0
+Arena del Sol Ltd. Liability Co Shipping,No,Yes,No,Alverossia,Oceanus,0,22,0
+Arena del Sol Pic,No,Yes,Yes,Merigrad,Oceanus,0,1972,0
+Arena del Sol SRL,No,Yes,Yes,Marebak,Marebak,0,1696,0
+Arunachal Pradesh s Ltd,No,No,Yes,Sol y Oceana,Oceanus,0,53,0
+Arunachal Pradesh s Plc,No,Yes,No,Osterivaria,Oceanus,0,846,0
+Arunachal Pradesh s S.A. de C.V.,No,No,No,Kondanovia,Oceanus,0,21,0
+Asiotr Coral Ltd. Corporation Cargo,Yes,No,No,Valtalmo,Oceanus,40,35,1
+Assam   Limited Liability Company Transit,No,No,No,Merigrad,NA,0,24,0
+Assam  Market GmbH & Co. KG Dockyard,No,Yes,Yes,Marebak,NA,0,653,0
+Assam  Market LC World,No,No,Yes,Puerto del Mar,Konalika,0,231,0
+AtlanticAppetite Oyster  Ltd. Corporation Investment,Yes,Yes,Yes,Sirenareef,Oceanus,1782,52,30
+Bahía del Sol NV,No,No,No,Uzifrica,Oceanus,0,86,0
+Balkan  GmbH & Co. KG,No,No,No,Osterivaria,Oceanus,0,40,0
+Balkan Cat ОАО Transport,No,Yes,Yes,Vesperanda,Oceanus,0,4454,0
+Baltic Catch Ltd. Liability Co,No,Yes,Yes,Marebak,Coralmarica,0,392,0
+Baltic Catch SE Solutions,Yes,No,Yes,Marebak,Jiraputra,87,828,19
+Baltic Flounder Salt spray LLC Marine conservation,No,Yes,No,Merigrad,NA,0,148,0
+Banded tilapia Sextant Pic Marine life,No,Yes,No,Marebak,NA,0,419,0
+Barents Sea Shrimp NV,Yes,No,Yes,Merigrad,Oceanus,22,80,1
+Bay of Bengal's Anchor,No,Yes,No,Zawalinda,Oceanus,0,278,0
+Belgian Cod BV Solutions,Yes,Yes,Yes,Coralmarica,Coralmarica,8969,36,24
+Belgian Scallop Compass Limited Liability Company Line,Yes,Yes,No,Merigrad,Oceanus,99,119,3
+Belgian Scallop Harbor ОАО Freight ,No,Yes,No,Marebak,NA,0,630,0
+Big Sulphur  A/S Freight ,No,No,No,Isliandor,NA,0,32,0
+Big Sulphur  S.A. de C.V.,No,Yes,Yes,Marebak,Oceanus,0,741,0
+Black Sea Anchovy S.p.A. Brothers,No,No,No,Merigrad,NA,0,71,0
+Black Sea Carp OJSC,No,No,No,Osterivaria,Oceanus,0,24,0
+Black Sea Sprat Coast AG Shipping,No,Yes,No,Puerto del Mar,NA,0,239,0
+Black Sea Tuna Barracuda,No,Yes,Yes,Coralmarica,Coralmarica,0,652,0
+Blue Horizon Family &,No,Yes,No,Osterivaria,NA,0,7175,0
+Blue Horizon Inc Transport,No,Yes,Yes,Marebak,Marebak,0,968,0
+Blue Horizon Limited Liability Company,No,No,No,Osterivaria,Oceanus,0,257,0
+Blue Nile  LLC and Son's,No,No,No,Marebak,NA,0,51,0
+Blue Nile  Ltd. Liability Co,No,No,No,Marebak,NA,0,237,0
+Blue Ridge   OJSC Forwading,No,No,No,Zawalinda,Oceanus,0,321,0
+Briny Import Marine sanctuary,Yes,Yes,Yes,Faraluna,Oceanus,785,39,5
+Brisa del Este Brine,No,Yes,Yes,Marebak,NA,0,1078,0
+Brisa del Este Wave,No,No,No,Marebak,NA,0,30,0
+Brisa del Mar Inc,No,No,No,Kondanovia,Oceanus,0,53,0
+Bu yu wang AG,Yes,Yes,No,Zawalinda,Oceanus,81,82,1
+Bu yu wang Sp,No,No,Yes,Oceanus,Rio Isla,0,91,0
+Bujagali Falls  CJSC Brackish,No,No,No,Marebak,NA,0,129,0
+Cape Verde Islands  Fish ,No,Yes,Yes,Marebak,NA,0,295,0
+Cape Verde Islands  Sp Transportation,No,No,No,Marebak,NA,0,1236,0
+Cape of Good Hope   Corporation,No,Yes,Yes,Marebak,NA,0,1121,0
+Caracola Marina Ltd Holdings,No,Yes,No,Vesperanda,Marifada,0,272,0
+Caracola del Este N.V.,Yes,Yes,No,Zawalinda,Sirenareef,50,131,1
+Caracola del Este Pic,Yes,No,No,Sol y Oceana,Sirenareef,56,29,2
+Caracola del Sol Company Express,No,No,No,Marebak,Oceanus,0,285,0
+Caracola del Sol Delivery,No,No,No,Puerto del Mar,Luminkind,0,82,0
+Casablanca Coast  Flounder Oyj Line,Yes,Yes,No,Marebak,Oceanus,738,500,37
+Casablanca Coast  Ltd. Corporation,No,Yes,No,Marebak,NA,0,74,0
+Chhattisgarh   S.A. de C.V.,No,Yes,Yes,Marebak,Marebak,0,289,0
+Chituku SRL & Son's,Yes,Yes,No,Norlindor,Oceanus,45,30,4
+Chuan gou  N.V. Delivery,No,Yes,No,Merigrad,Oceanus,0,3243,0
+Coastal Charm AG Overseas,No,No,No,Marebak,Marebak,0,24,0
+Congo Rapids   Ltd. Corporation,Yes,No,No,Brindivaria,Oceanus,191,123,25
+Consulting S.A. de C.V.,No,No,No,Merigrad,NA,0,26,0
+Coral Cove LC Hull,No,Yes,Yes,Puerto del Mar,Oceanus,0,527,0
+Coral Kingdom AG Transit,No,No,No,Marebak,Oceanus,0,49,0
+Coral del Sur LLC Transport,No,No,No,Merigrad,Oceanus,0,41,0
+Coral del Sur Limited Liability Company,No,Yes,No,Marebak,Nordica Bay,0,374,0
+CoralCrest Limited Liability Company Seabass,No,No,No,Merigrad,NA,0,52,0
+Costa de Coral Limited Liability Company Transport,No,No,No,Marebak,Oceanus,0,437,0
+Costa de Oro S.p.A.,Yes,Yes,Yes,Thessalandia,Oceanus,117,62,4
+Costa del Mar Ges.m.b.H. Marine biology,No,Yes,No,Mawazam,Oceanus,0,595,0
+Costa del Viento Incorporated and Son's,No,No,No,Thessalandia,Oceanus,0,43,0
+Costa del Viento NV,No,Yes,Yes,Marebak,Marebak,0,828,0
+Daniel Ferry N.V. Transit,No,Yes,No,Osterivaria,Oceanus,0,4184,0
+Danish Plaice Ltd. Liability Co Logistics,No,No,No,Arreciviento,NA,0,1449,0
+Danish Plaice Swordfish AB Shipping,No,Yes,No,Mawazam,NA,0,250,0
+David Corporation Marine life,No,No,No,Vesperanda,Oceanus,0,200,0
+David Limited Liability Company Worldwide,No,No,Yes,Marebak,Kuzalanda,0,1660,0
+David Ltd. Liability Co Forwading,Yes,Yes,Yes,Coralada,Oceanus,2354,23,43
+Deep Blue Cargo ship,Yes,Yes,Yes,Thessalandia,Oceanus,233,103,4
+Deep Sea Divers Incorporated Shipping,No,Yes,No,Marebak,Oceanus,0,158,0
+Deep Sea Divers SRL Industrial,No,No,No,Faraluna,Oceanus,0,30,0
+Delhi   Limited Liability Company,No,No,No,Arreciviento,Oceanus,0,210,0
+Delhi ers Corp Brine,Yes,No,Yes,Merigrad,Oceanus,28,47,1
+Delphinia Mussel Ges.m.b.H. Marine biology,No,No,No,Islavaria,NA,0,130,0
+Diao er  Inc Brackish,No,No,No,Marebak,Oceanus,0,126,0
+Diao yu  OJSC Overseas,No,Yes,Yes,Marebak,Marebak,0,760,0
+Dnipro  Breakwater LC Marine sanctuary,No,Yes,Yes,Zawalinda,Zawalinda,0,1188,0
+Donald Bonito LLC Line,No,No,Yes,Mawazam,Oceanus,0,235,0
+Donald Sp & Son's,No,Yes,No,Merigrad,Oceanus,0,601,0
+Drakensberg  Limited Liability Company,No,Yes,Yes,Jiraputra,Oceanus,0,388,0
+Dutch Bill  Marine mist NV Freight ,No,No,No,Merigrad,Oceanus,0,132,0
+Dutch Eel AB Holdings,No,Yes,Yes,Vesperanda,Oceanus,0,2764,0
+Dutch Mussels N.V. Transportation,No,No,No,Marebak,NA,0,171,0
+Dutch Mussels S.A. de C.V. Seaport,No,No,Yes,Marebak,Marebak,0,96,0
+Dutch Mussels Tidepool ОАО Express,No,Yes,Yes,Marebak,NA,0,1204,0
+Edward Tsunami Ges.m.b.H. Family,No,Yes,No,Osterivaria,Oceanus,0,1348,0
+Estrella de Mar AB,No,Yes,No,Zawalinda,NA,0,236,0
+Estrella de la Costa Limited Liability Company,Yes,Yes,Yes,Marebak,Oceanus,74,28,1
+Estrella de la Costa Ltd. Corporation Marine biology,No,No,No,Coral Solis,Coralmarica,0,89,0
+Estrella de la Costa SRL,No,Yes,No,Mawazam,Oceanus,0,866,0
+Estrella del Mar &,No,Yes,No,Coralmarica,Coralmarica,0,473,0
+Estrella del Mar ОАО Shipping,No,No,Yes,Marebak,NA,0,1976,0
+Estrella del Sol Buoy,Yes,Yes,Yes,Merigrad,Oceanus,902,144,37
+Faroe Islands  Company World,No,Yes,Yes,Zawalinda,Coralmarica,0,531,0
+Faroe Islands Halibut ОАО,No,No,Yes,Alverossia,Oceanus,0,145,0
+Fin Addiction Ltd Line,No,Yes,Yes,Marebak,NA,0,970,0
+Finest S.A. de C.V. Overseas,No,No,No,Osterivaria,NA,0,32,0
+FinestTastes GmbH & Co. KG Cargo,No,No,No,Merigrad,Oceanus,0,27,0
+FinestTastes Ltd. Corporation Solutions,No,No,No,Vesperanda,NA,0,43,0
+Fisherman's Pride ОАО _,No,No,Yes,Marebak,Oceanus,0,504,0
+French  Seabed S.p.A. Forwading,No,Yes,No,Osterivaria,Luminkind,0,1558,0
+Gambia River   GmbH & Co. KG and,No,No,Yes,Puerto del Mar,Sol y Oceana,0,370,0
+George Ltd. Liability Co Express,No,No,No,Marebak,NA,0,128,0
+Great Ruaha River  Rybachit Sagl Line,No,No,Yes,Marebak,Oceanus,0,49,0
+Greek Octopus Ltd. Corporation,No,Yes,Yes,Isliandor,Oceanus,0,710,0
+Greek Octopus SRL Logistics,No,No,No,Merigrad,NA,0,2710,0
+Greek Sea Bass Company Express,No,Yes,No,Marebak,NA,0,1238,0
+Greek ermen GmbH United,No,No,No,Valtalmo,Oceanus,0,93,0
+Greek ermen Marine sanctuary,No,No,No,Marebak,NA,0,78,0
+Greek ermen Plc Marine sanctuary,Yes,No,No,Myriadonia,Oceanus,237,23,3
+Gujarat   Ltd. Liability Co,No,No,No,Arreciviento,Oceanus,0,136,0
+Gujarat  Limited Liability Company Merchants,No,No,No,Vesperanda,NA,0,21,0
+Gulf of Guinea   Shipping,No,No,No,Mawalara,Coralmarica,0,76,0
+Haryana Sea  N.V. Holdings,Yes,No,No,Rio Isla,Oceanus,21,142,2
+Haryana s Plc Transit,No,No,Yes,Marebak,NA,0,715,0
+Icelandic Oysters S.A. de C.V. Lighthouse,No,Yes,No,Marebak,NA,0,427,0
+Iphimedeia S.A. de C.V.,No,No,No,Marebak,Oceanus,0,750,0
+Irish Scallop Inc Freight ,No,No,Yes,Korvelia,Oceanus,0,539,0
+Isla del Tesoro Co,No,No,No,Puerto del Mar,Luminkind,0,21,0
+Italian Sardines Ges.m.b.H. Marine sanctuary,No,No,No,Marebak,Marebak,0,141,0
+Italian Sardines Ltd. Liability Co,No,Yes,Yes,Vesperanda,Oceanus,0,1665,0
+Italian Sword AB Seafaring,No,No,No,Brindisola,NA,0,1686,0
+Italian Sword Underwater Plc Enterprises,No,Yes,No,Marebak,Oceanus,0,1002,0
+Jammu & Kashmir  GmbH,Yes,No,No,Rio Solovia,Oceanus,41,33,1
+Jammu & Kashmir Sea  GmbH Shoal,No,No,No,Marebak,Oceanus,0,151,0
+Jharkhand Sea  Inc Shipping,No,No,No,Rio Isla,Oceanus,0,226,0
+Kallianassa Fish  AG Solutions,Yes,No,No,Rio Isla,Oceanus,21,72,1
+Karnataka  Market AS Solutions,Yes,No,No,Coralmarica,Coralmarica,75,27,2
+Karnataka s Ltd. Liability Co Dashi,No,No,Yes,Puerto del Mar,Sol y Oceana,0,146,0
+Kerala  Market - Ges.m.b.H. Cargo,No,Yes,No,Osterivaria,Oceanus,0,3163,0
+Kerala  Market OJSC Brothers,No,Yes,No,Merigrad,NA,0,436,0
+Kerala  Market Plc Transport,No,No,No,Marebak,Islavaragon,0,364,0
+Khundu N.V. and Son's,No,No,No,Arreciviento,Oceanus,0,384,0
+Kilwa Coast  Limited Liability Company Forwading,No,No,No,Osterivaria,NA,0,156,0
+Kong zhong diao yu  AB Marine,No,No,No,Merigrad,NA,0,46,0
+Konkan Coast  Dashi BV Investment,No,Yes,No,Merigrad,NA,0,566,0
+Lake Kivu   Corp Hijiki,No,No,No,Mawazam,NA,0,117,0
+Lake Kivu   S.A. de C.V.,No,Yes,No,Solovarossa,Oceanus,0,51,0
+Lake Nakuru  GmbH & Co. KG Import,No,No,No,Vesperanda,Oceanus,0,130,0
+Lake Nakuru  Ltd. Corporation Transport,No,No,No,Marebak,Oceanus,0,59,0
+Lake Rukwa  Limited Liability Company,No,No,No,Kondarama,Kondarama,0,152,0
+Lake Tana  & Son's,No,Yes,No,Osterivaria,Oceanus,0,3855,0
+Lake Turkana  SRL Marine life,No,Yes,No,Marebak,NA,0,570,0
+Lake Victoria Catch  BV,No,No,Yes,Merigrad,NA,0,514,0
+Lake Victoria Nile    Corporation,Yes,Yes,Yes,Sol y Oceana,Oceanus,480,106,37.5
+Lake Victoria Nile    Inc,No,No,No,Isliandor,Oceanus,0,173,0
+Logistics Ltd. Liability Co,No,No,Yes,Oceanus,Oceanus,0,191,0
+Ltd. Corporation Ltd. Liability Co,Yes,No,No,Marebak,Oceanus,346,114,16
+Ltd. Liability Co GmbH,No,Yes,No,Marebak,Oceanus,0,513,0
+Madhya Pradesh   Ltd. Liability Co Freight ,No,Yes,No,Marebak,NA,0,886,0
+Madhya Pradesh  Market LLC,No,Yes,Yes,Merigrad,Oceanus,0,6666,0
+Maharashtra   Ltd. Liability Co,No,Yes,No,Marebak,Oceanus,0,633,0
+Maharashtra Sea  AS Seagrass,No,No,No,Marebak,NA,0,78,0
+Maharashtra Sea  Cruise ship BV Transportation,No,No,No,Puerto del Mar,Sol y Oceana,0,81,0
+Makumba Ltd. Liability Co,No,No,No,Utoporiana,Riodelsol,0,61,0
+Malabar Sea Catch Limited Liability Company Distribution,No,Yes,No,Solovarossa,Utoporiana,0,72,0
+Manipur  Market Ltd. Liability Co,No,No,No,Isliandor,Oceanus,0,872,0
+Manipur  Market Ltd. Liability Co Transport,No,No,No,Marebak,Marebak,0,205,0
+Mar de Cristal Incorporated Transport,No,No,No,Marebak,Marebak,0,31,0
+Mar de Cristal Sagl,No,No,No,Marebak,NA,0,30,0
+Mar de Sirenas BV Worldwide,Yes,No,No,Sol y Oceana,Oceanus,23,30,1
+Mar de Sirenas Inc,No,No,No,Marebak,Oceanus,0,31,0
+Mar de Sirenas Manatee,No,No,No,Arreciviento,NA,0,25,0
+Mar de Sirenas SRL Worldwide,No,Yes,No,Icarnia,Icarnia,0,288,0
+Mar de la Aventura Rybachit,No,No,Yes,Osterivaria,NA,0,99,0
+Mar de la Costa Import Shark,No,No,No,Merigrad,Oceanus,0,294,0
+Mar de la Costa Pic,No,No,No,Marebak,Oceanus,87,233,0
+Mar de la Costa Sagl,No,Yes,Yes,Arreciviento,NA,0,1193,0
+Mar de la Felicidad BV,No,Yes,No,Mawazam,NA,0,209,0
+Mar de la Felicidad Corporation,No,No,Yes,Marebak,Oceanus,0,2899,0
+Mar de la Felicidad NV,No,No,No,Vesperanda,Marebak,0,284,0
+Mar de la Luna S.p.A.,No,Yes,Yes,Vesperanda,Oceanus,0,564,0
+Mar de la Luna Sp,No,No,No,Sol y Oceana,Oceanus,0,463,0
+Mar de la Luz AS,No,Yes,No,Marebak,NA,0,703,0
+Mar de la Luz Salmon,No,Yes,Yes,Marebak,Marebak,0,370,0
+Mar de la Vida S.p.A.,No,Yes,No,Vesperanda,NA,0,3447,0
+Mar del Caribe Solutions,No,No,No,Coralada,Coralmarica,0,33,0
+Mar del Este Brine SRL Investment,No,Yes,Yes,Coralmarica,Oceanus,0,582,0
+Mar del Golfo Marine biology ОАО Freight ,No,No,Yes,Marebak,NA,0,368,0
+Mar del Golfo Sp,No,No,Yes,Oceanus,Oceanus,0,246,0
+Mar del Norte Corp Express,No,No,No,Marebak,Osterivella,0,434,0
+Mar del Oeste SRL,No,No,No,Vesperanda,Oceanus,0,26,0
+Mar del Paraíso Corporation,No,No,No,Mawazam,Oceanus,0,216,0
+Mar y Luna Wakame,Yes,No,No,Vesperanda,Oceanus,58,142,1
+Marine Adventures Ltd. Corporation Brothers,No,No,No,Alverossia,Oceanus,0,326,0
+Marine Adventures Seabreeze AS Forwading,No,No,No,Osterivella,NA,0,21,0
+Marine Masterminds Kga Line,No,Yes,No,Marebak,Marebak,0,925,0
+Marine Mates Pic Delivery,No,No,No,Marebak,NA,0,201,0
+Marine Mermaids Inc Marine conservation,No,No,No,Marebak,Oceanus,0,906,0
+Marine Mermaids Incorporated Services,No,No,No,Marebak,Oceanus,0,166,0
+Marine Muse Ltd. Corporation Catfish,No,Yes,No,Osterivaria,Oceanus,0,1249,0
+Marit GmbH & Co. KG,No,Yes,No,Vesperanda,NA,0,941,0
+Mediterranean s Sagl Logistics,Yes,No,No,Coralmarica,Oceanus,21,30,8
+Meghalaya  S.A. de C.V.,No,Yes,Yes,Merigrad,Oceanus,0,247,0
+Michael Ltd. Corporation Seal,No,Yes,No,Mawazam,NA,0,2011,0
+Mizoram  S.A. de C.V.,No,No,No,Marebak,NA,0,2362,0
+Monarch Tsunami Ltd. Corporation Merchants,No,Yes,No,Marebak,NA,0,323,0
+Mount Kenya  GmbH & Co. KG,No,No,No,Marebak,Sirenareef,0,487,0
+Nagaland Sea  Ltd. Corporation &,No,No,No,Merigrad,NA,0,77,0
+Nagaland Sea Catch GmbH,No,No,Yes,Marebak,NA,0,399,0
+Nagaland Sea Catch Ltd. Liability Co Logistics,No,Yes,No,Marebak,NA,0,2497,0
+Nautical Navigators Fish  Incorporated Line,No,No,No,Sol y Oceana,Nalakond,0,27,0
+Nautical Navigators Ges.m.b.H. Distribution,No,No,No,Alverossia,NA,0,52,0
+Niger Bend   Sagl Transit,Yes,No,Yes,Coral Solis,Oceanus,24,285,2
+Niger River   Leska N.V. Delivery,No,No,No,Anderia del Mar,Oceanus,0,155,0
+Nile   Ltd. Liability Co Brothers,No,No,No,Merigrad,Oceanus,0,128,0
+Nile Crocodile  BV Marine life,No,No,No,Kondarivakia,Oceanus,0,102,0
+Norwegian Haddock S.A. de C.V.,No,Yes,Yes,Marebak,NA,0,705,0
+Norwegian King Crab Dockyard,No,No,Yes,Zawalinda,NA,0,292,0
+Náutica del Mar Barracuda,No,Yes,No,Islavaria,Oceanus,0,2005,0
+Náutica del Mar GmbH & Co. KG,No,No,No,Marebak,NA,0,203,0
+Náutica del Mar Ltd. Liability Co,No,No,No,Merigrad,NA,0,230,0
+Náutica del Mar Sagl,No,Yes,Yes,Zawalinda,Oceanus,0,637,0
+Náutica del Norte Marina CJSC Marine ecology,No,No,No,Arreciviento,Oceanus,0,241,0
+Náutica del Sol Brothers,No,Yes,No,Mawazam,Mawazam,0,453,0
+Náutica del Sol SE,Yes,No,Yes,Rio Isla,Maripuerto,29,41,1
+OOO Snapper Sp Holdings,No,No,No,Merigrad,Oceanus,0,24,0
+Ob River Surfboard AG Marine conservation,No,No,No,Kondanovia,Oceanus,0,236,0
+Ocean Emporium A/S &,No,No,No,Merigrad,Oceanus,0,213,0
+Ocean Oasis Ges.m.b.H. Shipping,No,No,No,Brindisola,Kondanovia,0,244,0
+Ocean Outfitters Ltd. Corporation,No,No,No,Mawazam,Oceanus,0,369,0
+OceanKing s SE _,No,Yes,No,Zawalinda,Oceanus,0,514,0
+OceanSavor Surf Limited Liability Company Logistics,No,Yes,Yes,Marebak,NA,0,2456,0
+Oceanfront Oases Co Shipping,No,Yes,No,Vesperanda,NA,0,1973,0
+Oceanfront Oasis Company Green ,No,Yes,No,Mawazam,Oceanus,0,1034,0
+Oceanfront Oasis Limited Liability Company Saltwater,No,No,No,Nalakond,Oceanus,0,363,0
+Oceanic Blue Plc Holdings,No,No,No,Merigrad,Marebak,0,66,0
+Oceanic Explorers Sashimi Incorporated Marine,Yes,Yes,Yes,Brindisola,Oceanus,58,188,6
+Oceanic Outfitters Estuary LC Worldwide,No,No,No,Thessalandia,Oceanus,0,21,0
+OceanicDelights Limited Liability Company,No,No,No,Marebak,NA,0,140,0
+Océano de Coral Corporation Marine conservation,Yes,Yes,Yes,Marebak,Oceanus,1098,362,55.5
+Océano del Este ОАО,Yes,No,No,Solovarossa,Luminkind,25,187,1
+Odisha Sea  Ltd. Liability Co Transport,Yes,No,No,Thessalandia,Oceanus,35,88,1
+Okavango Delta  Coast OJSC Marine,No,Yes,No,Marebak,Oceanus,0,656,0
+Ola Azul Ges.m.b.H. Services,No,Yes,No,Mawandia,Oceanus,0,176,0
+Ola Azul SRL United,No,Yes,No,Marebak,NA,0,329,0
+Ola de la Costa AS,No,No,No,Nalakond,Sol y Oceana,0,81,0
+Ola de la Costa Inc,No,Yes,No,Marebak,Brindisola,0,574,0
+Ola del Mar SRL,Yes,No,No,Zawalinda,Sol y Oceana,63,67,2
+Olas del Mar Inc International,No,No,Yes,Mawazam,Oceanus,0,93,0
+Olas del Mar Yacht,Yes,No,No,Riodelsol,Oceanus,21,49,2
+Olas del Sur Ltd,Yes,Yes,Yes,Faraluna,Oceanus,9352,58,88
+Perla del Mar Deep-sea,No,Yes,No,Osterivaria,Oceanus,0,2481,0
+Playa Azul Sp Shipping,No,Yes,No,Arreciviento,Oceanus,0,203,0
+Playa de Arena OJSC Express,No,Yes,No,Vesperanda,Oceanus,0,4525,0
+Playa de Arena SE Underwater,Yes,No,No,Oceanus,Oceanus,78,22,2
+Playa de Arena SRL,No,No,No,Isliandor,Oceanus,0,1508,0
+Playa de Arena Submarine S.A. de C.V. Marine,Yes,Yes,Yes,Vesperanda,Oceanus,356,157,12
+Playa de Oro BV,No,No,Yes,Marebak,Oceanus,0,426,0
+Playa de Oro Cargo ship,No,No,No,Utoporiana,Oceanus,0,21,0
+Playa de Oro Oyj,No,No,No,Arreciviento,Coralmarica,0,39,0
+Playa de la Felicidad Ltd Consultants,Yes,No,No,Marebak,Marebak,30,338,14
+Playa de la Felicidad Plc,Yes,No,No,Islavaria,Oceanus,49,237,6
+Playa de la Luna Carriers Seafarer,No,No,No,Marebak,NA,0,29,0
+Playa de la Luna S.p.A.,No,No,No,Brindisola,Coralmarica,0,155,0
+Playa del Cielo BV,Yes,Yes,Yes,Marebak,Oceanus,439,38,6
+Playa del Cielo Corp Logistics,No,No,No,Marebak,NA,0,784,0
+Playa del Cielo ОАО,No,No,No,Marebak,Marebak,0,357,0
+Playa del Mar BV Solutions,No,No,No,Merigrad,Oceanus,0,181,0
+Playa del Mar Corporation,No,Yes,No,Vesperanda,Coralmarica,0,2879,0
+Playa del Mar Ltd,No,No,No,Osterivaria,Oceanus,0,55,0
+Playa del Mar Sagl,No,No,No,Rio Isla,Oceanus,0,25,0
+Portuguese Sea Bass AS Marine,No,No,No,Marebak,NA,0,25,0
+Portuguese Tuna A/S Cargo,Yes,Yes,No,Vesperanda,Oceanus,109,34,2
+Poseidon Tanker Inc Marine sanctuary,No,No,No,Syrithania,Oceanus,0,88,0
+Pradesh   S.A. de C.V.,No,No,No,Arreciviento,Coralmarica,0,91,0
+Punjab  Market LC Worldwide,No,No,No,Thessalandia,Oceanus,0,1000,0
+Punjab Sea  Ltd. Corporation Marine conservation,No,Yes,No,Marebak,Marebak,0,331,0
+Rajasthan  Marine sanctuary Underwater,No,Yes,Yes,Oceanus,Oceanus,0,905,0
+ReefR estaurant Pic Marine sanctuary,No,No,No,Marebak,Oceanus,0,116,0
+Richard S.A. de C.V. Solutions,No,Yes,Yes,Arreciviento,Oceanus,0,589,0
+Rift Valley fishery A/S,No,No,No,Coralada,Oceanus,0,122,0
+Rift Valley fishery GmbH & Co. KG Cargo,No,No,No,Merigrad,Oceanus,0,189,0
+Rift Valley fishery LLC,No,Yes,Yes,Isliandor,Oceanus,0,407,0
+Rift Valley fishery Marine biology,No,Yes,Yes,Coralmarica,Oceanus,0,882,0
+Rift Valley fishery OJSC,No,Yes,No,Marebak,NA,0,168,0
+Rift Valley fishery Sagl,No,Yes,Yes,Osterivaria,Oceanus,0,1399,0
+Rufiji River  Ges.m.b.H. Family,No,Yes,No,Vesperanda,Oceanus,0,650,0
+Rybachit Limited Liability Company,No,No,No,Osterivaria,Oceanus,0,37,0
+S.A. de C.V. CJSC,No,Yes,Yes,Marebak,NA,0,986,0
+Sahara  LLC Sagl Marine life,No,No,No,Marebak,NA,0,63,0
+Saharan Coast  Trawler SE Marine sanctuary,No,Yes,Yes,Merigrad,Oceanus,0,919,0
+SaltSea Corp and Son's,No,Yes,Yes,Marebak,Marebak,0,361,0
+Saltwater Sanctuary Marine ecology,No,Yes,Yes,Isliandor,Oceanus,0,803,0
+Saltwater Sirens S.p.A. International,No,Yes,Yes,Marebak,NA,0,2906,0
+Saltwater Surf Club S.A. de C.V. Logistics,No,No,Yes,Zawalinda,NA,0,61,0
+SaltwaterSelections LC & Son's,No,No,Yes,Lumindoria,Lumindoria,0,23,0
+Samaka Cruise ship LC Marine life,No,No,Yes,Brindisola,Brindisola,0,40,0
+Samaka Ltd. Liability Co Distribution,No,Yes,Yes,Arreciviento,Oceanus,0,441,0
+Sander Ltd. Corporation Leska,No,No,No,Zawalinda,Riodelsol,0,478,0
+Scania Whale N.V. Logistics,No,Yes,No,Puerto del Mar,NA,0,364,0
+Scottish Herring Ltd. Liability Co,Yes,No,No,Merigrad,Maripuerto,29,37,1
+Scottish Lobster Cruise ship SRL Transport,No,Yes,Yes,Marebak,Marebak,0,851,0
+Scottish Lobster Ltd. Corporation,Yes,No,No,Mawazam,Oceanus,31,72,1
+Sea Breezes S.A. de C.V. Freight ,No,Yes,No,Isliandor,Coralmarica,0,23995,0
+Sea Spray AS Cargo,No,Yes,Yes,Zawalinda,Oceanus,0,369,0
+Sea Star LLC Shipping,No,Yes,Yes,Zimawand,Sol y Oceana,0,1614,0
+Sea Striders Co Krill,No,Yes,No,Marebak,NA,0,33,0
+SeaBass  Ltd. Liability Co Consulting,No,Yes,No,Mawandia,Oceanus,0,448,0
+SeaBass &  SE Tanker,Yes,Yes,No,Arreciviento,Oceanus,936,26,5
+SeaBass Company Express Estuary,No,Yes,Yes,Zawalinda,Sol y Oceana,0,660,0
+SeaLion S.A. de C.V. Freight ,No,Yes,No,Alverossia,Oceanus,0,222,0
+SeaSpray Wave SRL Solutions,Yes,No,Yes,Coralmarica,Coralmarica,33,51,1
+Seashell Seekers LLC Delivery,No,Yes,Yes,Marebak,NA,0,1574,0
+Seashell Seekers Ltd Distribution,No,Yes,Yes,Marebak,NA,0,1071,0
+Seashell s  Kga Merchants,No,Yes,No,Marebak,NA,0,848,0
+Seashore Sanctuary Marine life,No,Yes,No,Marebak,NA,0,164,0
+Seaside Strolls A/S Marine ecology,No,Yes,No,Vesperanda,NA,0,447,0
+Seaside Strolls Chart LC Delivery,No,Yes,Yes,Marebak,NA,0,221,0
+Selous Game Reserve  AB,No,Yes,No,Mawazam,Coralmarica,0,620,0
+Selous Game Reserve  S.A. de C.V.,Yes,Yes,Yes,Isliandor,Oceanus,8434,128,363
+Selous Game Reserve  SE Solutions,No,No,Yes,Marebak,NA,0,170,0
+Senegal Coast  S.p.A. International,No,Yes,Yes,Coralada,Nalakond,0,303,0
+Senegal Coast  Whale Ges.m.b.H. Marine,No,Yes,No,Osterivaria,Oceanus,0,296,0
+Shanxi S.A. de C.V.,Yes,No,No,Alverossia,Oceanus,92,71,1
+Shou gan  AS Cargo,No,Yes,No,Marebak,Oceanus,0,431,0
+Shou gan  Sagl Mudflat,Yes,Yes,No,Oceanus,Oceanus,2196,173,4
+SilverScales CJSC and Son's,No,No,Yes,Marebak,Oceanus,0,48,0
+Spanish Anchovy CJSC Marine,Yes,Yes,Yes,Merigrad,Oceanus,130,292,4
+Spanish Anchovy Underwater Incorporated Family,No,No,Yes,Isliandor,Oceanus,0,1428,0
+Spanish Shrimp A/S Marine,No,Yes,No,Marebak,NA,0,2948,0
+Spanish Shrimp Incorporated Carriers,No,Yes,No,Osterivaria,NA,0,590,0
+Sparrmans  Inc Marine sanctuary,No,No,Yes,Marebak,NA,0,734,0
+Sudd Swamp   GmbH & Co. KG & Son's,No,No,No,Merigrad,Oceanus,0,146,0
+Sudd Swamp   S.p.A. Family,No,Yes,No,Marebak,NA,0,486,0
+Surf and Sea Marina,No,Yes,Yes,Zawalinda,Oceanus,0,598,0
+Tamil Nadu  Market Limited Liability Company Logistics,No,No,No,Marebak,NA,0,93,0
+Tamil Nadu  Market Plc,No,No,No,Osterivaria,Coralmarica,0,34,0
+Tamil Nadu s Barge,No,Yes,No,Vesperanda,NA,0,1478,0
+Tangier Coast  Incorporated Delivery,No,No,Yes,Marebak,Oceanus,0,342,0
+The Salty Dog LC Marine,No,Yes,No,Khamseena,Mawandia,0,67,0
+The Salty Dog Limited Liability Company,Yes,Yes,Yes,Islavaria,Coralmarica,145,2729,61
+The Salty Pearl Express,No,Yes,Yes,Marebak,NA,0,711,0
+The Salty Pearl Lock,No,Yes,Yes,Marebak,NA,0,248,0
+The Sea Lion Company,No,No,No,Marebak,Oceanus,0,32,0
+Thoho S.A. de C.V.,No,No,Yes,Arreciviento,Oceanus,0,205,0
+Tide Turners A/S Delivery,No,No,No,Marebak,NA,0,307,0
+Togo  Limited Liability Company,No,No,No,Merigrad,Coralmarica,0,136,0
+Transit Limited Liability Company,Yes,No,No,Coralmarica,Oceanus,117,90,4
+Turkish Calamari A/S & Son's,No,No,Yes,Marebak,Marebak,0,492,0
+Turkish Calamari Plc ship,No,Yes,Yes,Puerto del Mar,Oceanus,0,266,0
+Turkish Mussels LLC and,Yes,No,Yes,Oceanus,Oceanus,32,359,1
+Turkish Salmon A/S Marine,Yes,Yes,No,Vesperanda,Oceanus,620,599,44
+Uttar Pradesh Sea  A/S Express,No,No,No,Merigrad,Oceanus,0,289,0
+Uttar Pradesh s Oyj,No,No,No,Marebak,Oceanus,0,453,0
+Uttarakhand   Tidepool Oyj International,No,Yes,Yes,Marebak,Marebak,0,1753,0
+Uttarakhand s Current Sagl Line,No,Yes,Yes,Puerto del Mar,Oceanus,0,640,0
+Victoria Falls   BV Worldwide,No,No,Yes,Arreciviento,Oceanus,0,97,0
+Victoria Falls   OJSC Marine,No,No,No,Osterivaria,Oceanus,0,544,0
+Viento Azul N.V. Distribution,No,Yes,No,Vesperanda,Nyxonix,0,1632,0
+Viento y Mar Hijiki,Yes,No,Yes,Marebak,Oceanus,460,162,2
+Volga River Pic Shipping,No,No,No,Puerto del Mar,Coralmarica,0,44,0
+Water Wonders AG Transport,Yes,No,No,Rio Isla,Oceanus,284,24,1
+Water Wonders Plc Cargo,No,Yes,No,Marebak,NA,0,574,0
+Wave Watchers Brine N.V. Express,No,No,No,Marebak,Marebak,0,72,0
+Wave Watchers Company United,No,Yes,No,Marebak,Coralmarica,0,343,0
+Wave Watchers Underwater Ltd. Corporation Solutions,No,Yes,Yes,Marebak,Marebak,0,1966,0
+WaveCatcher GmbH & Co. KG,No,No,Yes,Marebak,NA,0,74,0
+WaveWorx Ges.m.b.H. and Son's,No,No,Yes,Coralmarica,Luminkind,0,534,0
+West Bengal  Ltd. Corporation,No,Yes,Yes,Coralmarica,NA,0,855,0
+Whale Corp Marine ecology,No,No,Yes,Vesperanda,Oceanus,0,22,0
+Yenisei  Eel GmbH & Co. KG Services,Yes,Yes,Yes,Merigrad,Oceanus,225,1653,28.5
+Yenisei  S.A. de C.V.,Yes,Yes,No,Icarnia,Oceanus,147,24,4
+Yu er he  Bonito,No,Yes,Yes,Marebak,NA,0,1169,0
+Yu xian  Ltd. Corporation,No,No,No,Marebak,NA,0,83,0
+Zambezi Escarpment  ОАО Freight ,No,No,Yes,Marebak,NA,0,208,0
+Zambezi Rapids  Plc Holdings,No,Yes,Yes,Marebak,Marebak,0,1128,0
+Zanzibar Archipelago   Incorporated International,No,Yes,No,Marebak,NA,0,1414,0
+hǎi mǎ AS Sea spray,No,No,No,Marebak,Marebak,0,166,0
+hǎi mǎ OJSC Freight ,No,Yes,No,Marebak,Oceanus,0,35,0
+hǎi mǎ S.A. de C.V. & Son's,No,Yes,Yes,Osterivaria,Oceanus,0,73,0
+hǎi tún AS Industrial,No,No,No,Isliandor,NA,0,197,0
+lú yú Limited Liability Company International,No,No,No,Alverossia,Oceanus,0,88,0
+móguǐ yú S.A. de C.V.,Yes,No,Yes,Gavanovia,Oceanus,52,43,2
+nián yú Ltd. Corporation,No,Yes,Yes,Merigrad,Oceanus,0,27355,0
+shí rén yú Company Overseas,No,No,No,Zawalinda,Oceanus,0,78,0
+shí rén yú Marine conservation,No,Yes,No,Merigrad,Oceanus,0,723,0
+xiǎo lóng xiā GmbH & Co. KG,No,Yes,Yes,Marebak,Alverossia,0,952,0
+xiǎo lóng xiā Inc Worldwide,No,Yes,No,Marebak,NA,0,293,0
+xiǎo xiā Oyj Marine ecology,Yes,Yes,Yes,Coralmarica,Oceanus,206,384,21
+zūn yú Plc Holdings,No,Yes,Yes,Mawandia,Oceanus,0,42,0
+Pao gan SE Seal,No,Yes,Yes,Alverossia,Oceanus,27251,0,0
+Sea Striders GmbH Industrial,No,No,No,Coralmarica,Oceanus,715,0,0
+Mandalore S.A. de C.V. Logistics,No,No,No,Osterivaria,Oceanus,91,0,0
+Shou gan  Limited Liability Company Distribution,No,No,No,Arreciviento,Oceanus,143,0,0
+Zambezi River   Sp Marine conservation,No,No,No,Sol y Oceana,Oceanus,49,0,0
+-54,No,Yes,Yes,Nalakond,Oceanus,1114,0,0
+Dutch  Ltd. Liability Co Consultants,No,No,No,Sol y Oceana,Icarnia,128,0,0
+Brisa del Este BV,No,Yes,Yes,NA,Oceanus,4377,0,0
+Caracola Azul Oyj &,No,Yes,No,Playa Solis,Oceanus,1943,0,0
+Caracola del Sol Services,No,Yes,Yes,Puerto Sol,Oceanus,38682,0,0
+Coral Cove BV Delivery,No,Yes,Yes,Quornova,Oceanus,1054,0,0
+Costa de la Felicidad Shipping,No,Yes,Yes,Alverossia,Oceanus,20691,0,0
+Mar del Este CJSC,No,Yes,Yes,Merigrad,Oceanus,39150,0,0
+Orange River   Incorporated Shipping,No,Yes,Yes,Merigrad,Oceanus,4016,0,0
+Black Sea Tuna Sagl,No,No,Yes,Nalakond,Oceanus,1155,0,0
+-73,No,No,No,NA,Oceanus,236,0,0
+Kong zhong diao yu  Ges.m.b.H.,No,Yes,Yes,Oceanus,Oceanus,9134,0,0
+hǎi dǎn Corporation Wharf,No,Yes,Yes,Marebak,Oceanus,33226,0,0
+Delhi ers AS Holdings,No,No,No,Merigrad,Oceanus,29,0,0
+3 Trawler Corp Distribution,No,No,No,Brindisola,Oceanus,420,0,0
+Mar de Cielo Ltd. Corporation,No,No,No,Rio Isla,Oceanus,353,0,0
+The Sea Turtle GmbH & Co. KG,No,Yes,Yes,Marebak,Oceanus,4177,0,0
+Olas del Mar Worldwide,No,Yes,Yes,Oceanus,Oceanus,705,0,0
+-827,No,No,No,NA,Oceanus,36,0,0
+Costa del Viento Fish  S.p.A. United,No,Yes,Yes,Rio Isla,Oceanus,632,0,0
+Kong zhong diao yu  Hull,No,No,Yes,Isliandor,Oceanus,23,0,0
+Coastal Charm GmbH Transportation,No,Yes,Yes,Zawalinda,Oceanus,665,0,0
+Faroe Islands Halibut Sea S.p.A. Distribution,No,Yes,Yes,Baziuzim,Oceanus,1064,0,0
+Portuguese Tuna Incorporated Marine,No,Yes,Yes,Oceanus,Oceanus,556,0,0
+Isla del Mar NV Forwading,No,Yes,Yes,Oceanus,Oceanus,1772,0,0
+Barco de Plata Corp,No,No,No,Puerto Sol,Oceanus,33,0,0
+Náutica del Este Ltd. Corporation,No,No,No,Oceanus,Oceanus,96,0,0
+Rift Valley fishery Inc,No,Yes,Yes,Puerto del Mar,Oceanus,2343,0,0
+Uttarakhand  Market Limited Liability Company Nautical,No,Yes,Yes,Helixia,Oceanus,816,0,0
+Mar del Paraíso Limited Liability Company Transport,No,No,No,Puerto Sol,Oceanus,56,0,0
+Adriatic Tuna Seabass BV Transit,No,No,Yes,Mawazam,Oceanus,648,0,0
+Mar de la Vida LC,No,No,No,Puerto Sol,Oceanus,588,0,0
+-159,No,No,Yes,NA,Oceanus,56,0,0
+Oceanic Outfitters NV Freight ,No,No,No,Oceanus,Oceanus,24,0,0
+Benguela Current   GmbH Carriers,No,Yes,No,Gavanovia,Oceanus,470,0,0
+Sailors and Surfers Incorporated Enterprises,No,Yes,Yes,Puerto Sol,Oceanus,4185,0,0
+Dutch Bill  CJSC Worldwide,No,No,Yes,Puerto Sol,Oceanus,441,0,0
+Simien Mountains   Company Transport,No,No,No,Kondanovia,Oceanus,108,0,0
+-1550,No,No,No,NA,Oceanus,21,0,0
+-1813,No,No,No,NA,Oceanus,28,0,0
+Belgian Shrimps Ocean Corp Holdings,No,Yes,Yes,Lumaland,Oceanus,612,0,0
+Arena del Mar Marine Marine biology,No,Yes,Yes,Coral Solis,Oceanus,5371,0,0
+Tamil Nadu   Corporation Compass,No,Yes,No,Utoporiana,Oceanus,2883,0,0
+Madagascar Coast  AG Freight ,No,Yes,Yes,Oceanus,Oceanus,8127,0,0
+Mar del Placer Manatee,No,Yes,Yes,Puerto del Mar,Oceanus,3739,0,0
+Yu gan  Sea spray GmbH Industrial,No,Yes,No,Oceanus,Oceanus,5360,0,0
+Costa del Mar Tidepool SE Merchants,No,No,No,Merigrad,Lumakari,38,0,0
+Mar de la Costa AS Cargo,No,No,Yes,Kondanovia,Kondanovia,51,0,0
+Playa Blanca Sagl Shipping,No,Yes,Yes,Marebak,Oceanus,401,0,0
+Vespuci Seagrass A/S Consultants,No,No,Yes,Marebak,Oceanus,142,0,0
+Pao gan LC Freight ,No,Yes,Yes,-22004,Oceanus,5612,0,0
+-144,No,No,No,NA,Oceanus,31,0,0
+-5840,No,No,No,NA,Oceanus,101,0,0
+Ancla Marina AB Holdings,No,No,No,Kondanovia,Oceanus,293,0,0
+Caracola del Mar Transit,No,No,No,Coralmarica,Oceanus,22,0,0
+Coastal Castaway Coast Corporation Worldwide,No,Yes,Yes,Alverossia,Oceanus,821,0,0
+East Ltd Marine life,No,Yes,Yes,Coralmarica,Oceanus,354,0,0
+Haryana s Sagl Transport,No,Yes,Yes,Osterivaria,Oceanus,567,0,0
+Khundu GmbH & Co. KG Solutions,No,No,No,Icarnia,Oceanus,86,0,0
+Niger River Delta  Oyster ,No,Yes,No,Isliandor,Oceanus,23,0,0
+Playa del Mar Sagl Marine conservation,No,No,No,Marebak,Oceanus,23,0,0
+Punjab Sea  CJSC Estuary,No,No,No,Puerto Sol,Oceanus,349,0,0
+SE Ltd. Liability Co,No,No,No,Rio Isla,Oceanus,164,0,0
+SeaTree Ltd. Liability Co Holdings,No,No,Yes,Gavanovia,Oceanus,620,0,0
+Wave Warriors Ltd. Corporation Express,No,No,No,Coralada,Oceanus,174,0,0
+West Bengal  Plc Freight ,No,No,No,NA,Oceanus,72,0,0
+lú yú GmbH & Co. KG,No,Yes,Yes,Lumaland,Oceanus,544,0,0
+páng xiè S.A. de C.V. Line,No,Yes,Yes,Riodelsol,Oceanus,1929,0,0
+bǐ mù yú SE Brothers,No,No,No,Marebak,Oceanus,90,0,0
+Ola Marina Company Line,No,No,Yes,Mawazam,Oceanus,412,0,0
+Mar del Paraíso Corporation Logistics,No,Yes,Yes,Marebak,Oceanus,2832,0,0
+Saltwater Supreme ОАО Forwading,No,Yes,Yes,Puerto Sol,Oceanus,2432,0,0
+hǎi mǎ Sagl Express,No,No,No,Rio Isla,Oceanus,345,0,0
+-991,No,No,No,NA,Oceanus,108,0,0
+Black Sea Tuna Snapper,No,Yes,Yes,Puerto Sol,Oceanus,1781,0,0
+Lake Kariba   Ltd Shipping,No,Yes,Yes,Mawazam,Oceanus,34,0,0
+Henties Bay  Sagl Marina,No,No,Yes,Nalaloria,Oceanus,24,0,0
+Náutica del Sol Corporation,No,Yes,Yes,Mawazam,Oceanus,1738,0,0

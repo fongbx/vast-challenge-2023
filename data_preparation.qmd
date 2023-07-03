@@ -63,7 +63,7 @@ We discovered that the columns "valueofgoodsusd" and "valueofgoods_omu" both con
 ```{r}
 conversion_rate <- 1.5384 
 mc2_edges_fishing$valueofgoodsusd <- ifelse(is.na(mc2_edges_fishing$valueofgoodsusd), 
-                              round(mc2_edges_fishing$valueofgoods_omu / conversion_rate,0), 
+                              round(mc2_edges_fishing$valueofgoods_omu / conversion_rate, 0), 
                               mc2_edges_fishing$valueofgoodsusd)
 
 mc2_edges_fishing <- mc2_edges_fishing %>%
@@ -136,8 +136,9 @@ mc2_nodes <- mc2_nodes_extracted %>%
   left_join(mc2_nodes_all, by="id")
 
 # export files to csv
-write_csv(mc2_edges_agg_year, "all_edges_year.csv")
-write_csv(mc2_nodes, "all_nodes.csv")
+# write_csv(mc2_edges_agg_year_month, "output/all_edges_year_month.csv")
+# write_csv(mc2_edges_agg_year, "output/all_edges_year.csv")
+# write_csv(mc2_nodes, "output/all_nodes.csv")
 ```
 
 # Identification of Red-Flagged Companies
@@ -181,7 +182,7 @@ id2_red_flag1 <- mc2_red_flag1_pairs %>%
 
 red_flag1_nodes <- rbind(id1_red_flag1, id2_red_flag1) %>%
   distinct() %>% 
-  left_join(mc2_nodes_all, by="id")
+  left_join(mc2_nodes, by="id")
 
 length(red_flag1_nodes$id)
 ```
@@ -224,7 +225,7 @@ id2_red_flag2 <- mc2_red_flag2_pairs %>%
 
 red_flag2_nodes <- rbind(id1_red_flag2, id2_red_flag2) %>%
   distinct() %>% 
-  left_join(mc2_nodes_all, by="id")
+  left_join(mc2_nodes, by="id")
 
 length(red_flag2_nodes$id)
 ```
@@ -233,11 +234,46 @@ length(red_flag2_nodes$id)
 
 ```{r}
 # find our companies that meet two red flags
-red_flagged_companies_both <- intersect(red_flag1_nodes, red_flag2_nodes)
+red_flagged_companies_both <- intersect(red_flag1_nodes, red_flag2_nodes) %>% 
+  distinct()
 
 # find our companies that meet any one red flag
 red_flagged_companies_any <- rbind(red_flag1_nodes, red_flag2_nodes) %>%
   distinct()
+
+length(red_flagged_companies_both$id)
+```
+
+## Extract list of companies with red-flags
+
+```{r}
+# extract edges with red-flag nodes on ends (year_month and year granularity)
+# redflag_edges_year_month <- mc2_edges_agg_year_month %>%
+#   filter(source %in% red_flagged_companies_both[['id']] | target %in% red_flagged_companies_both[['id']])
+
+redflag_edges_year <- mc2_edges_agg_year %>%
+  filter(source %in% red_flagged_companies_both[['id']] | target %in% red_flagged_companies_both[['id']])
+
+# extract nodes of these trades (to also visualise the partners)
+id1_redflag_edges <- redflag_edges_year %>% 
+  select(source) %>%
+  rename(id = source)
+
+id2_redflag_edges <- redflag_edges_year %>%
+  select(target) %>%
+  rename(id = target)
+
+redflag_nodes_and_partners <- rbind(id1_redflag_edges, id2_redflag_edges) %>%
+  distinct() %>% 
+  mutate(redflag_nodes = case_when(
+    id %in% red_flagged_companies_both[["id"]] ~ "Yes",
+    TRUE ~ "No"
+  )) %>% 
+  left_join(mc2_nodes, by="id")
+
+# export files to csv
+# write_csv(redflag_edges_year, "output/redflag_edges_year.csv")
+# write_csv(redflag_nodes_and_partners, "output/redflag_nodes_and_partners.csv")
 ```
 
 # Identification of Top Exporters, Importers and Intermediaries
@@ -257,38 +293,37 @@ centrality_graph <- tbl_graph(nodes = mc2_nodes,
                              directed = TRUE)
 
 # calculate the centrality measures
-centrality_graph <- centrality_graph %>%
+mc2_nodes_w_centrality <- centrality_graph %>%
   mutate(in_deg_centrality = centrality_degree(weights = weights, 
                                                mode = "in")) %>% 
   mutate(out_deg_centrality = centrality_degree(weights = weights, 
                                                mode = "out")) %>% 
-  mutate(betweenness_centrality = centrality_betweenness()) 
+  mutate(betweenness_centrality = centrality_betweenness()) %>% 
+  activate(nodes) %>% 
+  as_tibble()
 ```
 
 ## List of Top 100 Exporters
 
 ```{r}
 # extract exporter nodes
-exporter_nodes <- centrality_graph %>% 
-  activate("nodes") %>% 
-  as_tibble() %>% 
-  arrange(desc(out_deg_centrality)) %>%
-  select(id, out_deg_centrality) %>% 
-  head(n=100)
+exporter_nodes <- mc2_nodes_w_centrality %>% 
+  top_n(100, out_deg_centrality) %>% 
+  arrange(desc(out_deg_centrality))
 
 # extract edges with exporter nodes on ends (year_month and year granularity)
-exporter_edges_year_month <- mc2_edges_agg_year_month %>%
-  filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])
+# exporter_edges_year_month <- mc2_edges_agg_year_month %>%
+#   filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])
 
 exporter_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% exporter_nodes[['id']] | target %in% exporter_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top exporters)
-id1_exporter_edges <- exporter_edges_year_month %>% 
+id1_exporter_edges <- exporter_edges_year %>% 
   select(source) %>%
   rename(id = source)
 
-id2_exporter_edges <- exporter_edges_year_month %>%
+id2_exporter_edges <- exporter_edges_year %>%
   select(target) %>%
   rename(id = target)
 
@@ -306,38 +341,34 @@ exporter_nodes_and_partners <- rbind(id1_exporter_edges, id2_exporter_edges) %>%
     id %in% red_flag2_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
-  left_join(mc2_nodes_all, by="id")
+  left_join(mc2_nodes_w_centrality, by="id")
 
 # export files to csv
-write_csv(exporter_edges_year_month, "exporter_edges_year_month.csv")
-write_csv(exporter_edges_year, "exporter_edges_year.csv")
-write_csv(exporter_nodes_and_partners, "exporter_nodes_and_partners.csv")
+# write_csv(exporter_edges_year, "output/exporter_edges_year.csv")
+# write_csv(exporter_nodes_and_partners, "output/exporter_nodes_and_partners.csv")
 ```
 
 ## List of Top 100 Importers
 
 ```{r}
 # extract importer nodes
-importer_nodes <- centrality_graph %>% 
-  activate("nodes") %>% 
-  as_tibble() %>% 
-  arrange(desc(in_deg_centrality)) %>%
-  select(id, in_deg_centrality) %>% 
-  head(n=100)
+importer_nodes <- mc2_nodes_w_centrality %>% 
+  top_n(100, in_deg_centrality) %>% 
+  arrange(desc(in_deg_centrality))
 
 # extract edges with importer nodes on ends (year_month and year granularity)
-importer_edges_year_month <- mc2_edges_agg_year_month %>%
-  filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])
+# importer_edges_year_month <- mc2_edges_agg_year_month %>%
+#   filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])
 
 importer_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% importer_nodes[['id']] | target %in% importer_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top importers)
-id1_importer_edges <- importer_edges_year_month %>% 
+id1_importer_edges <- importer_edges_year %>% 
   select(source) %>%
   rename(id = source)
 
-id2_importer_edges <- importer_edges_year_month %>%
+id2_importer_edges <- importer_edges_year %>%
   select(target) %>%
   rename(id = target)
 
@@ -355,38 +386,34 @@ importer_nodes_and_partners <- rbind(id1_importer_edges, id2_importer_edges) %>%
     id %in% red_flag2_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
-  left_join(mc2_nodes_all, by="id")
+  left_join(mc2_nodes_w_centrality, by="id")
 
 # export files to csv
-write_csv(importer_edges_year_month, "importer_edges_year_month.csv")
-write_csv(importer_edges_year, "importer_edges_year.csv")
-write_csv(importer_nodes_and_partners, "importer_nodes_and_partners.csv")
+# write_csv(importer_edges_year, "output/importer_edges_year.csv")
+# write_csv(importer_nodes_and_partners, "output/importer_nodes_and_partners.csv")
 ```
 
-## List of Top 100 Intermediaries
+## List of Top Intermediaries (Top 66 which are all nodes with betweenness centrality \> 0)
 
 ```{r}
 # extract intermediary nodes
-intermediary_nodes <- centrality_graph %>% 
-  activate("nodes") %>% 
-  as_tibble() %>% 
-  arrange(desc(betweenness_centrality)) %>%
-  select(id, betweenness_centrality) %>% 
-  head(n=100)
+intermediary_nodes <- mc2_nodes_w_centrality %>% 
+  filter(betweenness_centrality > 0) %>% 
+  arrange(desc(betweenness_centrality))
 
 # extract edges with intermediary nodes on ends (year_month and year granularity)
-intermediary_edges_year_month <- mc2_edges_agg_year_month %>%
-  filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])
+# intermediary_edges_year_month <- mc2_edges_agg_year_month %>%
+#   filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])
 
 intermediary_edges_year <- mc2_edges_agg_year %>%
   filter(source %in% intermediary_nodes[['id']] | target %in% intermediary_nodes[['id']])
 
 # extract nodes of these trades (to also visualise the partners of top importers)
-id1_intermediary_edges <- intermediary_edges_year_month %>% 
+id1_intermediary_edges <- intermediary_edges_year %>% 
   select(source) %>%
   rename(id = source)
 
-id2_intermediary_edges <- intermediary_edges_year_month %>%
+id2_intermediary_edges <- intermediary_edges_year %>%
   select(target) %>%
   rename(id = target)
 
@@ -404,10 +431,93 @@ intermediary_nodes_and_partners <- rbind(id1_intermediary_edges, id2_intermediar
     id %in% red_flag2_nodes[["id"]] ~ "Yes",
     TRUE ~ "No"
   )) %>% 
-  left_join(mc2_nodes_all, by="id")
+  left_join(mc2_nodes_w_centrality, by="id")
 
 # export files to csv
-write_csv(intermediary_edges_year_month, "intermediary_edges_year_month.csv")
-write_csv(intermediary_edges_year, "intermediary_edges_year.csv")
-write_csv(intermediary_nodes_and_partners, "intermediary_nodes_and_partners.csv")
+# write_csv(intermediary_edges_year, "output/intermediary_edges_year.csv")
+# write_csv(intermediary_nodes_and_partners, "output/intermediary_nodes_and_partners.csv")
+```
+
+## Summarise weights of intermediary nodes based on them being both source and target
+
+```{r}
+# filter out intermediary nodes
+intermediary_nodes_check <- intermediary_nodes_and_partners %>% 
+  filter(top_intermediaries == "Yes") %>% 
+  select(-in_deg_centrality, -out_deg_centrality) %>% 
+  arrange(desc(betweenness_centrality))
+
+# extract edges with intermediary nodes as source
+intermediary_as_source <- mc2_edges_agg_year_month %>%
+  filter(source %in% intermediary_nodes_check[['id']]) %>% 
+  rename(id = source) %>% 
+  group_by(id, Year, Month) %>% 
+  summarise(frequency = sum(weights),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
+  ungroup()
+
+# extract edges with intermediary nodes as target
+intermediary_as_target <- mc2_edges_agg_year_month %>%
+  filter(target %in% intermediary_nodes_check[['id']]) %>% 
+  rename(id = target) %>% 
+  group_by(id, Year, Month) %>% 
+  summarise(frequency = sum(weights),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
+  ungroup()
+
+# combine and compute total
+intermediary_combined <- rbind(intermediary_as_source, intermediary_as_target) %>% 
+  group_by(id, Year, Month) %>% 
+  summarise(totalfrequency = sum(frequency),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
+  ungroup()
+
+intermediary_combined
+```
+
+## Summarise weights of exporter nodes based on them being source
+
+```{r}
+# filter out exporter nodes
+exporter_nodes_check <- exporter_nodes_and_partners %>% 
+  filter(top_exporters == "Yes") %>% 
+  select(-in_deg_centrality, -betweenness_centrality) %>% 
+  arrange(desc(out_deg_centrality))
+
+# extract edges with exporter nodes as source
+exporter_as_source <- mc2_edges_agg_year_month %>%
+  filter(source %in% exporter_nodes_check[['id']]) %>% 
+  rename(id = source) %>% 
+  group_by(id, Year, Month) %>% 
+  summarise(totalfrequency = sum(weights),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
+  ungroup()
+
+exporter_as_source
+```
+
+## Summarise weights of importer nodes based on them being target
+
+```{r}
+# filter out importer nodes
+importer_nodes_check <- importer_nodes_and_partners %>% 
+  filter(top_importers == "Yes") %>% 
+  select(-out_deg_centrality, -betweenness_centrality) %>% 
+  arrange(desc(in_deg_centrality))
+
+# extract edges with exporter nodes as source
+importers_as_target <- mc2_edges_agg_year_month %>%
+  filter(target %in% importer_nodes_check[['id']]) %>% 
+  rename(id = target) %>% 
+  group_by(id, Year, Month) %>% 
+  summarise(totalfrequency = sum(weights),
+            totalweightkg = sum(totalweightkg),
+            totalvalueofgoodsusd = sum(totalvalueofgoodsusd)) %>% 
+  ungroup()
+
+importers_as_target
 ```

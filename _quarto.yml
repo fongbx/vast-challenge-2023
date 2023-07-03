@@ -4,16 +4,21 @@ project:
 website:
   
   navbar:
-    title: "Vast Challenge 2023"
+    title: "Oceanus Watch"
     background: "#8cbfeb"
     pinned: true
-    right:
-      - icon: house-fill
+    left:
+      - text: Home
         href: index.qmd
-        text: Home
       - proposal.qmd
-      - data_preparation.qmd
-      - about.qmd
+      - text: RShiny App
+        href: https://oceanuswatch.shinyapps.io/shinyapp/
+    right:
+      - icon: person-circle
+        href: about.qmd 
+      - icon: github
+        href: https://github.com/fongbx/vast-challenge-2023
+        text: Github
 
 format:
   html:

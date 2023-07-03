@@ -1,0 +1,13 @@
+name: shinyapp
+title: shinyapp
+username:
+account: fongbx
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9399520
+bundleId: 7413400
+url: https://fongbx.shinyapps.io/shinyapp/
+when: 1688367437.2796
+lastSyncTime: 1688367437.27961
+asMultiple: FALSE
+asStatic: FALSE

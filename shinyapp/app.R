@@ -12,17 +12,20 @@ all_edges_year <- read_csv("appdata/all_edges_year.csv")
 all_edges_year_month <- read_csv("appdata/all_edges_year_month.csv")
 
 ## exporter bundle
-exporter_nodes <- read_csv("appdata/exporter_nodes_and_partners.csv")
+exporter_nodes <-
+  read_csv("appdata/exporter_nodes_and_partners.csv")
 exporter_edges <- read_csv("appdata/exporter_edges_year.csv")
 
 ## importer bundle
-importer_nodes <- read_csv("appdata/importer_nodes_and_partners.csv")
+importer_nodes <-
+  read_csv("appdata/importer_nodes_and_partners.csv")
 importer_edges <- read_csv("appdata/importer_edges_year.csv")
 
 ## intermediary bundle
 intermediary_nodes <-
   read_csv("appdata/intermediary_nodes_and_partners.csv")
-intermediary_edges <- read_csv("appdata/intermediary_edges_year.csv")
+intermediary_edges <-
+  read_csv("appdata/intermediary_edges_year.csv")
 
 ## redflag bundle
 redflag_nodes <- read_csv("appdata/redflag_nodes_and_partners.csv")
@@ -90,7 +93,7 @@ vbs <- list(
                  style = "font-size: 150%;"),
     showcase = icon("handshake-simple", class = "fa-3x"),
     theme_color = "secondary",
-    width = 1/4,
+    width = 1 / 4,
   ),
   value_box(
     fill = TRUE,
@@ -131,7 +134,14 @@ ui <- page_navbar(
   
   # USER GUIDE PANEL  -------------------------------------------------------
   
-  nav_panel("User Guide", icon = icon("circle-info")),
+  nav_panel(
+    "User Guide",
+    icon = icon("circle-info"),
+    
+    card(full_screen = TRUE,
+         card_image(file = "www/userguide.png",
+                    width = "100%"))
+  ),
   
   # ENTITY HEATMAP PANEL  ---------------------------------------------------
   
@@ -167,19 +177,24 @@ ui <- page_navbar(
       ),
       
       # Mainpanel Heatmap Plot
-      card(
-        full_screen = TRUE,
-        card_body(
-          
-          # Display header
-          h4(strong(textOutput("entityoverviewheader"))),
-          p("Uncover entities with unexpected trade pattern variations over time using the heatmaps below. 
-          Filter by", tags$i(strong("Bundle")), "and selected", tags$i(strong("Entity Range")), "for specific insights."),
-          
-          # Display plot
-          plotlyOutput("entityheatmap")
-        )
-      )
+      card(full_screen = TRUE,
+           card_body(
+             # Display header
+             h4(strong(textOutput(
+               "entityoverviewheader"
+             ))),
+             p(
+               "Uncover entities with unexpected trade pattern variations over time using the heatmaps below.
+          Filter by",
+               tags$i(strong("Bundle")),
+               "and selected",
+               tags$i(strong("Entity Range")),
+               "for specific insights."
+             ),
+             
+             # Display plot
+             plotlyOutput("entityheatmap")
+           ))
     )
   ),
   
@@ -228,7 +243,8 @@ ui <- page_navbar(
               choices = NULL,
               multiple = TRUE,
               options = list(`actions-box` = TRUE,
-                             `live-search` = TRUE))
+                             `live-search` = TRUE)
+            )
           )
         )
       ),
@@ -240,13 +256,20 @@ ui <- page_navbar(
           title = "Entity Details",
           
           # Display header
-          h4(strong(textOutput("entitydetailsheader"))),
-          p("Analyse key statistics and associated partners of a specific entity over the years
-          using the network graphs and bar charts below. Filter by", tags$i(strong("Bundle")), "and", tags$i(strong("Entity.")),
-            "for targeted insights."),
+          h4(strong(textOutput(
+            "entitydetailsheader"
+          ))),
+          p(
+            "Analyse key statistics and associated partners of a specific entity over the years
+          using the network graphs and bar charts below. Filter by",
+            tags$i(strong("Bundle")),
+            "and",
+            tags$i(strong("Entity.")),
+            "for targeted insights."
+          ),
           
           # Display value boxes
-          layout_columns(fill = FALSE, !!!vbs),
+          layout_columns(fill = FALSE,!!!vbs),
           
           # Display network graphs
           layout_columns(
@@ -277,10 +300,17 @@ ui <- page_navbar(
           min_height = 450,
           
           # Display header
-          h4(strong(textOutput("entitypartnersheader"))),
-          p("Observe the trade frequency between the selected", tags$i(strong("Entity")),
+          h4(strong(textOutput(
+            "entitypartnersheader"
+          ))),
+          p(
+            "Observe the trade frequency between the selected",
+            tags$i(strong("Entity")),
             "and its partners in the line chart below to uncover their
-            business relationship patterns. Filter on specific", tags$i(strong("Partners")), "for targeted insights."),
+            business relationship patterns. Filter on specific",
+            tags$i(strong("Partners")),
+            "for targeted insights."
+          ),
           
           # Display plot
           plotlyOutput("lineplot")
@@ -303,7 +333,6 @@ ui <- page_navbar(
         width = 340,
         
         accordion(
-          
           accordion_panel(
             "All Tabs",
             # Sidebar Filter 1
@@ -332,10 +361,15 @@ ui <- page_navbar(
           "Trade Network Overview",
           
           # Display header
-          h4(strong(textOutput("countryrouteheader"))),
-          p("Explore the trade frequency of country routes by filtering on",
-            tags$i(strong("Year.")), "Countries with bigger nodes represent more export routes,
-            and thicker line widths indicate higher shipment frequency."),
+          h4(strong(textOutput(
+            "countryrouteheader"
+          ))),
+          p(
+            "Explore the trade frequency of country routes by filtering on",
+            tags$i(strong("Year.")),
+            "Countries with bigger nodes represent more export routes,
+            and thicker line widths indicate higher shipment frequency."
+          ),
           
           # Display plot
           plotOutput("country_network")
@@ -345,16 +379,29 @@ ui <- page_navbar(
           
           
           # Display header and plot
-          h4(strong(textOutput("selcountryrouteheader"))),
-          p("Investigate specific country routes by filtering on", tags$i(strong("Source Country")),
-            "and", tags$i(strong("Target Country")), "based on the top 5 shipping route frequencies.
-                The trade frequency of the chosen shipping route by selected", tags$i(strong("Year")), "is shown."),
+          h4(strong(textOutput(
+            "selcountryrouteheader"
+          ))),
+          p(
+            "Investigate specific country routes by filtering on",
+            tags$i(strong("Source Country")),
+            "and",
+            tags$i(strong("Target Country")),
+            "based on the top 5 shipping route frequencies.
+                The trade frequency of the chosen shipping route by selected",
+            tags$i(strong("Year")),
+            "is shown."
+          ),
           
           plotOutput("plots"),
           # Display header and table
-          h4(strong(textOutput("selcountryentheader"))),
-          p("The following entities, ranked in descending order of total trade frequency,
-                frequently ship on the chosen shipping route."),
+          h4(strong(textOutput(
+            "selcountryentheader"
+          ))),
+          p(
+            "The following entities, ranked in descending order of total trade frequency,
+                frequently ship on the chosen shipping route."
+          ),
           DTOutput("mytable")
         )
       )
@@ -370,8 +417,14 @@ server <- function(input, output, session) {
   
   # output entity overview header based on selection
   output$entityoverviewheader <- renderText({
-    paste("Trade Frequency of Top", input$node_range[1],
-          "to", input$node_range[2], input$bundleoverview, "over time")
+    paste(
+      "Trade Frequency of Top",
+      input$node_range[1],
+      "to",
+      input$node_range[2],
+      input$bundleoverview,
+      "over time"
+    )
   })
   
   # update node_range in slider
@@ -400,17 +453,17 @@ server <- function(input, output, session) {
     if (input$bundleoverview == "Exporters") {
       nodes_check <- exporter_nodes %>%
         filter(top_exporters == "Yes") %>%
-        select(-in_deg_centrality, -betweenness_centrality) %>%
+        select(-in_deg_centrality,-betweenness_centrality) %>%
         arrange(desc(out_deg_centrality))
     } else if (input$bundleoverview == "Intermediaries") {
       nodes_check <- intermediary_nodes %>%
         filter(top_intermediaries == "Yes") %>%
-        select(-in_deg_centrality, -out_deg_centrality) %>%
+        select(-in_deg_centrality,-out_deg_centrality) %>%
         arrange(desc(betweenness_centrality))
     } else if (input$bundleoverview == "Importers") {
       nodes_check <- importer_nodes %>%
         filter(top_importers == "Yes") %>%
-        select(-out_deg_centrality, -betweenness_centrality) %>%
+        select(-out_deg_centrality,-betweenness_centrality) %>%
         arrange(desc(in_deg_centrality))
     }
     
@@ -507,7 +560,9 @@ server <- function(input, output, session) {
   
   # output entity partners header based on selection
   output$entitypartnersheader <- renderText({
-    paste("Trade Frequency between", input$idselection, "and Partners over the years")
+    paste("Trade Frequency between",
+          input$idselection,
+          "and Partners over the years")
   })
   
   # nodes to use based on bundle selection
@@ -657,9 +712,17 @@ server <- function(input, output, session) {
           "Frequency: ",
           format(weights, big.mark = ",", scientific = FALSE),
           "<br>Weight: ",
-          format(totalweightkg, big.mark = ",", scientific = FALSE),
+          format(
+            totalweightkg,
+            big.mark = ",",
+            scientific = FALSE
+          ),
           "<br>Value: ",
-          format(totalvalueofgoodsusd, big.mark = ",", scientific = FALSE)
+          format(
+            totalvalueofgoodsusd,
+            big.mark = ",",
+            scientific = FALSE
+          )
         ),
         # tooltip
         arrows = "to",
@@ -863,25 +926,31 @@ server <- function(input, output, session) {
         label2 = totalvalueofgoodsusd,
       )
     ) +
-      geom_point(
-        aes(
-          text = paste0(
-            "Frequency: ",
-            format(weights, big.mark = ",", scientific = FALSE),
-            "<br>Weight: ",
-            format(totalweightkg, big.mark = ",", scientific = FALSE),
-            "<br>Value: ",
-            format(totalvalueofgoodsusd, big.mark = ",", scientific = FALSE)
+      geom_point(aes(
+        text = paste0(
+          "Frequency: ",
+          format(weights, big.mark = ",", scientific = FALSE),
+          "<br>Weight: ",
+          format(
+            totalweightkg,
+            big.mark = ",",
+            scientific = FALSE
+          ),
+          "<br>Value: ",
+          format(
+            totalvalueofgoodsusd,
+            big.mark = ",",
+            scientific = FALSE
           )
         )
-      ) +
+      )) +
       geom_line() +
       labs(y = "Trade Frequency") +
       theme(axis.title.x = element_blank())
     
     # wrap plot in ggplotly for interactivity
     ggplotly(p,
-             tooltip = "text") %>% 
+             tooltip = "text") %>%
       layout(legend = list(
         orientation = "h",
         x = 0,
@@ -898,14 +967,24 @@ server <- function(input, output, session) {
   
   # output selected country route header based on selection
   output$selcountryrouteheader <- renderText({
-    paste("Trade Frequency from", input$source_country,
-          "to", input$target_country, "in", input$Year)
+    paste(
+      "Trade Frequency from",
+      input$source_country,
+      "to",
+      input$target_country,
+      "in",
+      input$Year
+    )
   })
   
   # output selected country route entity header based on selection
   output$selcountryentheader <- renderText({
-    paste("Entities frequently shipping from", input$source_country,
-          "to", input$target_country)
+    paste(
+      "Entities frequently shipping from",
+      input$source_country,
+      "to",
+      input$target_country
+    )
   })
   
   output$source_country_dropdown <- renderUI({
@@ -1032,11 +1111,11 @@ server <- function(input, output, session) {
       summarise(total_weight = sum(weights)) %>%
       arrange(desc(total_weight))
     
-    datatable(aggregated_data,
-              options = list(
-                scrollY = "200px"),
-              colnames = c("Source Entity", "Target Entity",
-                           "Total Trade Frequency")
+    datatable(
+      aggregated_data,
+      options = list(scrollY = "200px"),
+      colnames = c("Source Entity", "Target Entity",
+                   "Total Trade Frequency")
     )
   })
 }

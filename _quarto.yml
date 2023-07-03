@@ -11,6 +11,8 @@ website:
       - text: Home
         href: index.qmd
       - proposal.qmd
+      - text: Poster
+        href: pdf/VAA_project_poster.pdf
       - text: RShiny App
         href: https://oceanuswatch.shinyapps.io/shinyapp/
     right:
